@@ -1,2 +1,7 @@
+<<<<<<< HEAD
 # Ignore node_modules directories in the root and all subdirectories
 node_modules/
+=======
+# Node modules
+node_modules/
+>>>>>>> 2341ef539a3226321b9f488c5636ff60602e3aa4
