@@ -1,7 +1,4 @@
-<<<<<<< HEAD
 // SignIn.jsx
-=======
->>>>>>> 2341ef539a3226321b9f488c5636ff60602e3aa4
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import {
@@ -39,11 +36,7 @@ export default function SignIn() {
         dispatch(signInFailure(data));
         return;
       }
-<<<<<<< HEAD
       dispatch(signInSuccess(data)); // Dispatch signInSuccess with user data
-=======
-      dispatch(signInSuccess(data));
->>>>>>> 2341ef539a3226321b9f488c5636ff60602e3aa4
       navigate("/");
     } catch (error) {
       dispatch(signInFailure(error));
@@ -51,7 +44,6 @@ export default function SignIn() {
   };
 
   return (
-<<<<<<< HEAD
     <div className="p-3 max-w-lg mx-auto">
       <h1 className="text-3xl text-center font-semibold my-7">Sign In</h1>
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
@@ -86,49 +78,6 @@ export default function SignIn() {
       <p className="text-red-700 mt-5">
         {error ? error.message || "Something went wrong!" : ""}
       </p>
-=======
-    <div className="flex items-center justify-center min-h-screen bg-login ">
-      <div className="text-center backdrop-blur-md shadow-lg p-10 rounded-xl lg:w-1/3 md:w-1/3">
-        <h1 className="text-4xl font-bold mb-4">Sign In</h1>
-        <form onSubmit={handleSubmit} className="p-8 rounded">
-          {/* <label className=" text-gray-700">Email</label> */}
-
-          <input
-            type="email"
-            placeholder="Email"
-            id="email"
-            className="w-full p-2 border border-gray-300 shadow-sm rounded mt-1"
-            onChange={handleChange}
-          />
-          {/* <label className="block text-gray-700">Password</label> */}
-
-          <input
-            type="password"
-            placeholder="Password"
-            id="password"
-            className="w-full p-2 border border-gray-300 shadow-sm rounded mt-1"
-            onChange={handleChange}
-          />
-
-          <button
-            disabled={loading}
-            className="w-full p-2 border border-gray-300 shadow-sm rounded mt-1  px-6 py-2 text-sm font-medium hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
-          >
-            {loading ? "Loading..." : "Sign In"}
-          </button>
-          <OAuth />
-        </form>
-        <div className="flex gap-2 mt-5">
-          <p>Dont have an account?</p>
-          <Link to="/sign-up">
-            <span className="text-blue-500">Sign up</span>
-          </Link>
-        </div>
-        <p className="text-red-700 mt-5">
-          {error ? error.message || "Something went wrong!" : ""}
-        </p>
-      </div>
->>>>>>> 2341ef539a3226321b9f488c5636ff60602e3aa4
     </div>
   );
 }
