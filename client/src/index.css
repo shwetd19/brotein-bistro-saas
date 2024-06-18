@@ -1,3 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.bg-login {
+  background-image: url("bg.png");
+  background-size: cover;
+  background-position: center;
+  /* background-attachment: fixed; */
+}
