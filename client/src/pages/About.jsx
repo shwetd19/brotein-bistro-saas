@@ -1,7 +1,5 @@
-// pages/About.jsx
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import SubscriptionRow from "../components/SubscriptionRow";
 
 function About() {
   const [subscriptions, setSubscriptions] = useState([]);
@@ -30,7 +28,7 @@ function About() {
       // Update local state to reflect the approval
       setSubscriptions((prevSubscriptions) =>
         prevSubscriptions.map((sub) =>
-          sub._id === id ? { ...sub, approved: true } : sub
+          sub._id === id? {...sub, approved: true } : sub
         )
       );
     } catch (error) {
@@ -45,7 +43,7 @@ function About() {
 
       // Update local state to remove the declined subscription
       setSubscriptions((prevSubscriptions) =>
-        prevSubscriptions.filter((sub) => sub._id !== id)
+        prevSubscriptions.filter((sub) => sub._id!== id)
       );
     } catch (error) {
       console.error("Error declining subscription:", error);
@@ -55,36 +53,40 @@ function About() {
   if (isLoading) return <div>Loading...</div>;
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen bg-gray-200">
-      <table className="min-w-full divide-y divide-gray-200">
-        <thead className="bg-gray-50">
+    <div className="flex flex-col items-center justify-center h-screen bg-gray-100 p-10">
+      <h1 className="text-2xl font-bold mb-5">Subscriptions</h1>
+      <table className="w-full border-collapse">
+        <thead className="border-b">
           <tr>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-              Index
-            </th>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-              Username
-            </th>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-              Date
-            </th>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-              Plan
-            </th>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-              Actions
-            </th>
+            <th className="px-4 py-2 text-sm font-semibold text-gray-700">Index</th>
+            <th className="px-4 py-2 text-sm font-semibold text-gray-700">Username</th>
+            <th className="px-4 py-2 text-sm font-semibold text-gray-700">Date</th>
+            <th className="px-4 py-2 text-sm font-semibold text-gray-700">Plan</th>
+            <th className="px-4 py-2 text-sm font-semibold text-gray-700">Actions</th>
           </tr>
         </thead>
-        <tbody className="bg-white divide-y divide-gray-200">
+        <tbody>
           {subscriptions.map((subscription, index) => (
-            <SubscriptionRow
-              key={subscription._id}
-              subscription={subscription}
-              index={index + 1}
-              onApprove={() => handleApprove(subscription._id)}
-              onDecline={() => handleDecline(subscription._id)}
-            />
+            <tr key={subscription._id} className={`hover:bg-gray-200 transition duration-150 ease-in-out`}>
+              <td className="px-4 py-2">{index + 1}</td>
+              <td className="px-4 py-2">{subscription.username}</td>
+              <td className="px-4 py-2">{new Date(subscription.date).toLocaleDateString()}</td>
+              <td className="px-4 py-2">{subscription.plan}</td>
+              <td className="px-4 py-2">
+                <button
+                  onClick={() => handleApprove(subscription._id)}
+                  className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2"
+                >
+                  Approve
+                </button>
+                <button
+                  onClick={() => handleDecline(subscription._id)}
+                  className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+                >
+                  Decline
+                </button>
+              </td>
+            </tr>
           ))}
         </tbody>
       </table>

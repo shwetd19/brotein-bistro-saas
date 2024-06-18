@@ -24,3 +24,11 @@ export const getSubscriptionById = (req, res) => {
     })
    .catch(error => res.status(500).json({ message: error.message }));
 };
+
+
+export const deleteSubscription = (req, res) => {
+  const { id } = req.params;
+  Subscription.findByIdAndDelete(id)
+   .then(() => res.status(204).send())
+   .catch(error => res.status(500).json({ message: error.message }));
+};

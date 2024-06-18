@@ -22,7 +22,8 @@ const ActiveSubscriptionSchema = new mongoose.Schema(
 
 const ActiveSubscription = mongoose.model(
   "ActiveSubscription",
-  ActiveSubscriptionSchema
+  ActiveSubscriptionSchema,
+  "activesubscriptions" // Explicitly setting the collection name
 );
 
 export default ActiveSubscription;
