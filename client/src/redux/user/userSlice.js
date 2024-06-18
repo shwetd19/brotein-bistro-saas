@@ -1,9 +1,10 @@
+// userSlice.js
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   currentUser: null,
   loading: false,
-  error: false,
+  error: null,
 };
 
 const userSlice = createSlice({
@@ -16,7 +17,7 @@ const userSlice = createSlice({
     signInSuccess: (state, action) => {
       state.currentUser = action.payload;
       state.loading = false;
-      state.error = false;
+      state.error = null; // Clear error on successful sign-in
     },
     signInFailure: (state, action) => {
       state.loading = false;
@@ -28,7 +29,7 @@ const userSlice = createSlice({
     updateUserSuccess: (state, action) => {
       state.currentUser = action.payload;
       state.loading = false;
-      state.error = false;
+      state.error = null; // Clear error on successful update
     },
     updateUserFailure: (state, action) => {
       state.loading = false;
@@ -40,7 +41,7 @@ const userSlice = createSlice({
     deleteUserSuccess: (state) => {
       state.currentUser = null;
       state.loading = false;
-      state.error = false;
+      state.error = null; // Clear error on successful delete
     },
     deleteUserFailure: (state, action) => {
       state.loading = false;
@@ -49,7 +50,7 @@ const userSlice = createSlice({
     signOut: (state) => {
       state.currentUser = null;
       state.loading = false;
-      state.error = false;
+      state.error = null; // Clear error on sign-out
     },
   },
 });
@@ -58,12 +59,12 @@ export const {
   signInStart,
   signInSuccess,
   signInFailure,
-  updateUserFailure,
   updateUserStart,
   updateUserSuccess,
-  deleteUserFailure,
+  updateUserFailure,
   deleteUserStart,
   deleteUserSuccess,
+  deleteUserFailure,
   signOut,
 } = userSlice.actions;
 
