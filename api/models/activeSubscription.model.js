@@ -7,13 +7,33 @@ const ActiveSubscriptionSchema = new mongoose.Schema(
       required: true,
       unique: true,
     },
-    date: {
+    phoneNumber: {
+      type: String,
+      required: true,
+    },
+    address: {
+      type: String,
+      required: true,
+    },
+    // Updated selectedPlan with the new enum values
+    selectedPlan: {
+      type: String,
+      enum: [
+        "Basic Mini Bowl",
+        "Two Times Mini Bowl",
+        "Premium",
+        "Platinum",
+        "150 Grams Protein Source",
+        "200 Grams Protein Source",
+      ],
+      required: true,
+    },
+    startDate: {
       type: Date,
       required: true,
     },
-    plan: {
+    selectedBranch: {
       type: String,
-      enum: ["basic", "premium"],
       required: true,
     },
   },
@@ -23,7 +43,7 @@ const ActiveSubscriptionSchema = new mongoose.Schema(
 const ActiveSubscription = mongoose.model(
   "ActiveSubscription",
   ActiveSubscriptionSchema,
-  "activesubscriptions" // Explicitly setting the collection name
+  "activesubscriptions"
 );
 
 export default ActiveSubscription;

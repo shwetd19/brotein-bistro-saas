@@ -7,13 +7,34 @@ const subscriptionSchema = new mongoose.Schema(
       required: true,
       unique: true,
     },
-    date: {
+    phoneNumber: {
+      type: String,
+      required: true,
+    },
+    address: {
+      type: String,
+      required: true,
+    },
+    // Updated selectedPlan field with the new plan names
+    selectedPlan: {
+      type: String,
+      enum: [
+        "Basic Mini Bowl",
+        "Two Times Mini Bowl",
+        "Premium",
+        "Platinum",
+        "150 Grams Protein Source",
+        "200 Grams Protein Source"
+      ],
+      required: true,
+    },
+    startDate: {
       type: Date,
       required: true,
     },
-    plan: {
+    selectedBranch: {
       type: String,
-      enum: ['basic', 'premium'],
+      enum: ["nashik-1", "nashik-2"],
       required: true,
     },
   },

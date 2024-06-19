@@ -21,9 +21,15 @@ export default function Header() {
           </Link>
           <Link
             className="rounded-full font-semibold py-2 px-4 md:mr-5 lg:mr-5 sm:mr-1 border-black border shadow-md"
-            to="/about"
+            to="/subscriptionse-requests"
           >
-            <li>About</li>
+            <li>Subscriptions Requests</li>
+          </Link>
+          <Link
+            className="rounded-full font-semibold py-2 px-4 md:mr-5 lg:mr-5 sm:mr-1 border-black border shadow-md"
+            to="/active-subscriptions"
+          >
+            <li>Active Subscriptions</li>
           </Link>
           <Link
             className="rounded-full font-semibold py-2 px-4 md:mr-5 lg:mr-5 sm:mr-1 border-black border shadow-md"
