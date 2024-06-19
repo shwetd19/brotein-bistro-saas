@@ -3,7 +3,19 @@
 @tailwind utilities;
 
 .bg-login {
-  background-image: url("bg.png");
+  background-image: url("Desktop.png");
+  /* background-image: url("bg4.jpg"); */
+  /* background-image: url("1977163.jpg"); */
+  /* background-image: url("bg3.avif"); */
+  background-size: cover;
+  background-position: center;
+  /* background-attachment: fixed; */
+}
+.bg-questionnaire {
+  background-image: url(".png");
+  /* background-image: url("bg4.jpg"); */
+  /* background-image: url("1977163.jpg"); */
+  /* background-image: url("bg3.avif"); */
   background-size: cover;
   background-position: center;
   /* background-attachment: fixed; */

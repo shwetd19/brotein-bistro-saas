@@ -29,7 +29,7 @@ export default function OAuth() {
       const data = await res.json();
       console.log(data);
       dispatch(signInSuccess(data));
-      navigate("/");
+      navigate("/questionnaire");
     } catch (error) {
       console.log("Could not login with Google", error);
     }

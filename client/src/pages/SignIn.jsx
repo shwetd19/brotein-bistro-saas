@@ -37,7 +37,7 @@ export default function SignIn() {
         return;
       }
       dispatch(signInSuccess(data)); // Dispatch signInSuccess with user data
-      navigate("/");
+      navigate("/questionnaire");
     } catch (error) {
       dispatch(signInFailure(error));
     }
@@ -45,7 +45,7 @@ export default function SignIn() {
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-login ">
-      <div className="text-center backdrop-blur-md shadow-lg p-6 rounded-xl lg:w-1/3 md:w-1/3">
+      <div className="text-center backdrop-blur-3xl shadow-lg p-6 rounded-2xl lg:w-1/3 md:w-1/3">
         <h1 className="text-3xl font-bold mb-4">Sign In</h1>{" "}
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
           <input
