@@ -1,16 +1,20 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-function SubscriptionPage() {
+const SubscriptionPage = () => {
   const { currentUser } = useSelector((state) => state.user);
+  const location = useLocation();
+  const { selectedPlan } = location.state || {};
+
   const [formData, setFormData] = useState({
     username: currentUser ? currentUser.username : "",
     phoneNumber: "",
     address: "",
-    selectedPlan: "",
+    selectedPlan: selectedPlan ? selectedPlan.name : "",
     startDate: "",
     selectedBranch: "",
-    userId: currentUser ? currentUser._id : "", // Include the user's ObjectId in formData
+    userId: currentUser ? currentUser._id : "",
   });
 
   const [minDate, setMinDate] = useState("");
@@ -36,7 +40,7 @@ function SubscriptionPage() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData), // formData now includes the user's ObjectId
+        body: JSON.stringify(formData),
       });
       const data = await response.json();
       console.log(data);
@@ -54,53 +58,38 @@ function SubscriptionPage() {
   };
 
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        height: "100vh",
-        backgroundColor: "#f0f0f0",
-      }}
-    >
-      <h1 style={{ marginBottom: "20px" }}>Get Subscription</h1>
+    <div className="pt-20 flex items-center justify-center bg-login h-screen">
       <form
         onSubmit={handleSubmit}
-        style={{
-          width: "80%",
-          maxWidth: "400px",
-          padding: "20px",
-          border: "1px solid #ccc",
-          borderRadius: "8px",
-        }}
+        className="w-4/5 max-w-md p-6 border border-gray-300 rounded-lg glass shadow-sm"
       >
-        <div style={{ marginBottom: "20px" }}>
-          <h2 style={{ marginBottom: "10px" }}>Personal Details</h2>
+        <div className="mb-2">
           <label
             htmlFor="username"
-            style={{ display: "block", marginBottom: "5px" }}
+            className="block w-full mb-1 text-2xl font-bold"
           >
-            Username:
+            Hello, {formData.username}
           </label>
-          <input
-            id="username"
+          {/* <input
+            id="selectedPlan"
             type="text"
-            name="username"
-            value={formData.username}
+            name="selectedPlan"
+            value={formData.selectedPlan}
             readOnly
-            style={{
-              width: "100%",
-              padding: "10px",
-              marginBottom: "15px",
-              borderRadius: "4px",
-              border: "1px solid #ccc",
-            }}
-          />
+            className="w-full p-2 mb-1 border border-gray-300 rounded bg-gray-100"
+          /> */}
           <label
-            htmlFor="phoneNumber"
-            style={{ display: "block", marginBottom: "5px" }}
+            className="block w-full mb-1 text-2xl font-semibold"
+            id="selectedPlan"
+            type="text"
+            name="selectedPlan"
+            value={formData.selectedPlan}
+            readOnly
           >
+            {formData.selectedPlan} is a great choice!
+          </label>
+          <h1 className="mb-1">You are one step away!</h1>
+          <label htmlFor="phoneNumber" className="block mb-1">
             Phone Number:
           </label>
           <input
@@ -110,18 +99,9 @@ function SubscriptionPage() {
             placeholder="Enter phone number"
             value={formData.phoneNumber}
             onChange={handleChange}
-            style={{
-              width: "100%",
-              padding: "10px",
-              marginBottom: "15px",
-              borderRadius: "4px",
-              border: "1px solid #ccc",
-            }}
+            className="w-full p-2 mb-1 border border-gray-300 rounded"
           />
-          <label
-            htmlFor="address"
-            style={{ display: "block", marginBottom: "5px" }}
-          >
+          <label htmlFor="address" className="block mb-1">
             Address:
           </label>
           <input
@@ -131,109 +111,45 @@ function SubscriptionPage() {
             placeholder="Enter address"
             value={formData.address}
             onChange={handleChange}
-            style={{
-              width: "100%",
-              padding: "10px",
-              marginBottom: "15px",
-              borderRadius: "4px",
-              border: "1px solid #ccc",
-            }}
+            className="w-full p-2 mb-1 border border-gray-300 rounded"
           />
         </div>
-        <div style={{ marginBottom: "20px" }}>
-          <h2 style={{ marginBottom: "10px" }}>Subscription Details</h2>
-          <label
-            htmlFor="selectedPlan"
-            style={{ display: "block", marginBottom: "5px" }}
-          >
-            Selected Plan:
-          </label>
-          <select
-            id="selectedPlan"
-            name="selectedPlan"
-            value={formData.selectedPlan}
-            onChange={handleChange}
-            style={{
-              width: "100%",
-              padding: "10px",
-              marginBottom: "15px",
-              borderRadius: "4px",
-              border: "1px solid #ccc",
-            }}
-          >
-            <option value="">Select Plan</option>
-            <option value="Basic Mini Bowl">Basic Mini Bowl</option>
-            <option value="Two Times Mini Bowl">Two Times Mini Bowl</option>
-            <option value="Premium">Premium</option>
-            <option value="Platinum">Platinum</option>
-            <option value="150 Grams Protein Source">
-              150 Grams Protein Source
-            </option>
-            <option value="200 Grams Protein Source">
-              200 Grams Protein Source
-            </option>
-          </select>
-          <label
-            htmlFor="startDate"
-            style={{ display: "block", marginBottom: "5px" }}
-          >
-            Start Date:
-          </label>
-          <input
-            id="startDate"
-            type="date"
-            name="startDate"
-            value={formData.startDate}
-            onChange={handleChange}
-            min={minDate}
-            style={{
-              width: "100%",
-              padding: "10px",
-              marginBottom: "15px",
-              borderRadius: "4px",
-              border: "1px solid #ccc",
-            }}
-          />
-          <label
-            htmlFor="selectedBranch"
-            style={{ display: "block", marginBottom: "5px" }}
-          >
-            Selected Branch:
-          </label>
-          <select
-            id="selectedBranch"
-            name="selectedBranch"
-            value={formData.selectedBranch}
-            onChange={handleChange}
-            style={{
-              width: "100%",
-              padding: "10px",
-              marginBottom: "15px",
-              borderRadius: "4px",
-              border: "1px solid #ccc",
-            }}
-          >
-            <option value="">Select Branch</option>
-            <option value="nashik-1">Nashik-1</option>
-            <option value="nashik-2">Nashik-2</option>
-          </select>
-        </div>
-        <button
-          type="submit"
-          style={{
-            padding: "10px 20px",
-            background: "#007bff",
-            color: "white",
-            border: "none",
-            borderRadius: "4px",
-            cursor: "pointer",
-          }}
+        {/* <label htmlFor="selectedPlan" className="block mb-1">
+          Selected Plan:
+        </label> */}
+
+        <label htmlFor="startDate" className="block mb-1">
+          When do you want to start?
+        </label>
+        <input
+          id="startDate"
+          type="date"
+          name="startDate"
+          value={formData.startDate}
+          onChange={handleChange}
+          min={minDate}
+          className="w-full p-2 mb-1 border border-gray-300 rounded"
+        />
+        <label htmlFor="selectedBranch" className="block mb-1">
+          Selected Branch:
+        </label>
+        <select
+          id="selectedBranch"
+          name="selectedBranch"
+          value={formData.selectedBranch}
+          onChange={handleChange}
+          className="w-full p-2 mb-4 border border-gray-300 rounded"
         >
+          <option value="">Select Branch</option>
+          <option value="nashik-1">Nashik-1</option>
+          <option value="nashik-2">Nashik-2</option>
+        </select>
+        <button type="submit" className="button">
           Submit
         </button>
       </form>
     </div>
   );
-}
+};
 
 export default SubscriptionPage;

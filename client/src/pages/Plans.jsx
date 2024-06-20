@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const plans = [
   {
@@ -34,7 +35,6 @@ const plans = [
     protein: "100 grams per meal, 30 grams guaranteed",
     customization: "Customizable",
   },
-
   {
     id: 5,
     name: "150 Grams Protein Source",
@@ -54,14 +54,17 @@ const plans = [
 ];
 
 const Plans = () => {
+  const navigate = useNavigate();
+
+  const handleSelectPlan = (plan) => {
+    navigate("/subscription", { state: { selectedPlan: plan } });
+  };
+
   return (
     <div className="container mx-auto pt-20 px-10 bg-[#F8F5F2]">
       <h1 className="text-3xl font-semibold text-center mb-8">
         Choose Your Perfect Meal Plan
       </h1>
-      {/* <p className="text-xl text-center mb-4">
-        Healthy, Customized, and Protein-Rich Meals Delivered to Your Doorstep
-      </p> */}
       <div className="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
         {plans.map((plan) => (
           <div
@@ -83,7 +86,10 @@ const Plans = () => {
             <p className="text-lg mb-4">
               <strong>Customization:</strong> <br /> {plan.customization}
             </p>
-            <button className="w-full py-2 bg-[#FF6F61] text-white font-bold rounded hover:bg-red-500">
+            <button
+              className="w-full py-2 bg-[#FF6F61] text-white font-bold rounded hover:bg-red-500"
+              onClick={() => handleSelectPlan(plan)}
+            >
               Select Plan
             </button>
           </div>

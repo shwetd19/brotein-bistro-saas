@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import Sidebar from "../components/Sidebar";
 
 function SubscriptionRequests() {
   const [subscriptions, setSubscriptions] = useState([]);
@@ -69,68 +70,73 @@ function SubscriptionRequests() {
   if (isLoading) return <div>Loading...</div>;
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen bg-gray-100 p-10">
-      <h1 className="text-2xl font-bold mb-5">Subscriptions</h1>
-      <table className="w-full border-collapse">
-        <thead className="border-b">
-          <tr>
-            <th className="px-4 py-2 text-sm font-semibold text-gray-700">
-              Index
-            </th>
-            <th className="px-4 py-2 text-sm font-semibold text-gray-700">
-              Username
-            </th>
-            <th className="px-4 py-2 text-sm font-semibold text-gray-700">
-              Phone Number
-            </th>
-            <th className="px-4 py-2 text-sm font-semibold text-gray-700">
-              Address
-            </th>
-            <th className="px-4 py-2 text-sm font-semibold text-gray-700">
-              Selected Plan
-            </th>
-            <th className="px-4 py-2 text-sm font-semibold text-gray-700">
-              Starting Date
-            </th>
-            <th className="px-4 py-2 text-sm font-semibold text-gray-700">
-              Selected Branch
-            </th>
-            <th className="px-4 py-2 text-sm font-semibold text-gray-700">
-              Actions
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          {subscriptions.map((subscription, index) => (
-            <tr
-              key={subscription._id}
-              className="hover:bg-gray-200 transition duration-150 ease-in-out"
-            >
-              <td>{index + 1}</td>
-              <td>{subscription.username}</td>
-              <td>{subscription.phoneNumber}</td>
-              <td>{subscription.address}</td>
-              <td>{subscription.selectedPlan}</td>
-              <td>{new Date(subscription.startDate).toLocaleDateString()}</td>
-              <td>{subscription.selectedBranch}</td>
-              <td>
-                <button
-                  onClick={() => handleApprove(subscription._id)}
-                  className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2"
-                >
-                  Approve
-                </button>
-                <button
-                  onClick={() => handleDecline(subscription._id)}
-                  className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
-                >
-                  Decline
-                </button>
-              </td>
+    <div className="grid md:grid-flow-col lg:grid-flow-col md:col-span-2 lg:col-span-2 bg-white ">
+      <div className="">
+        <Sidebar />
+      </div>
+      <div className="flex flex-col items-center justify-center pt-20 p-10">
+        <h1 className="text-2xl font-bold mb-5">Subscriptions</h1>
+        <table className="w-full border-collapse">
+          <thead className="border-b">
+            <tr>
+              <th className="px-4 py-2 text-sm font-semibold text-gray-700">
+                Index
+              </th>
+              <th className="px-4 py-2 text-sm font-semibold text-gray-700">
+                Username
+              </th>
+              <th className="px-4 py-2 text-sm font-semibold text-gray-700">
+                Phone Number
+              </th>
+              <th className="px-4 py-2 text-sm font-semibold text-gray-700">
+                Address
+              </th>
+              <th className="px-4 py-2 text-sm font-semibold text-gray-700">
+                Selected Plan
+              </th>
+              <th className="px-4 py-2 text-sm font-semibold text-gray-700">
+                Starting Date
+              </th>
+              <th className="px-4 py-2 text-sm font-semibold text-gray-700">
+                Selected Branch
+              </th>
+              <th className="px-4 py-2 text-sm font-semibold text-gray-700">
+                Actions
+              </th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {subscriptions.map((subscription, index) => (
+              <tr
+                key={subscription._id}
+                className="hover:bg-gray-200 transition duration-150 ease-in-out"
+              >
+                <td>{index + 1}</td>
+                <td>{subscription.username}</td>
+                <td>{subscription.phoneNumber}</td>
+                <td>{subscription.address}</td>
+                <td>{subscription.selectedPlan}</td>
+                <td>{new Date(subscription.startDate).toLocaleDateString()}</td>
+                <td>{subscription.selectedBranch}</td>
+                <td>
+                  <button
+                    onClick={() => handleApprove(subscription._id)}
+                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2 w-full mb-1"
+                  >
+                    Approve
+                  </button>
+                  <button
+                    onClick={() => handleDecline(subscription._id)}
+                    className="button text-white font-bold py-2 px-4 rounded w-full"
+                  >
+                    Decline
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }

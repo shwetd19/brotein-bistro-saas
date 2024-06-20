@@ -6,11 +6,25 @@
 :root {
   font-family: "Montserrat", sans-serif;
   font-optical-sizing: auto;
+  background-color: #f8f5f2;
   font-weight: 500;
   font-style: normal;
   line-height: 1.5;
   font-weight: 400;
 }
+
+.button {
+  width: 100%;
+  padding: 0.5rem 1rem;
+  background-color: #ff6f61;
+  color: white;
+  border-radius: 0.25rem;
+}
+
+.button:hover {
+  background-color: red;
+}
+
 .bg-login {
   /* background-image: url("Desktop.png"); */
   /* background-image: url("bg4.jpg"); */

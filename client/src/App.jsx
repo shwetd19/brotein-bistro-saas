@@ -14,6 +14,9 @@ import MealRecords from "./pages/MealRecords";
 import MealRecordDetails from "./pages/MealRecordDetails";
 import UserProfile from "./pages/ClientProfilePage";
 import SubscribedPlan from "./pages/ClientSubscribedPlan";
+import Plans from "./pages/Plans";
+import Bmi from "./pages/Bmi";
+import Questionnaire from "./pages/Questionnaire";
 
 export default function App() {
   return (
@@ -22,6 +25,10 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/sign-in" element={<SignIn />} />
+        <Route path="/sign-up" element={<SignUp />} />
+        <Route path="/Questionnaire" element={<Questionnaire />} />
+        <Route path="/bmi" element={<Bmi />} />
+        <Route path="/plans" element={<Plans />} />
         <Route path="/sign-up" element={<SignUp />} />
         <Route element={<PrivateRoute />}>
           <Route path="/profile" element={<Profile />} />
@@ -44,7 +51,6 @@ export default function App() {
           />
           <Route path="/meal-records" element={<MealRecords />} />
           <Route path="/meal-records/:id" element={<MealRecordDetails />} />
-
         </Route>
       </Routes>
     </BrowserRouter>
