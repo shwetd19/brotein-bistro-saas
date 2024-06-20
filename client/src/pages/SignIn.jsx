@@ -37,47 +37,49 @@ export default function SignIn() {
         return;
       }
       dispatch(signInSuccess(data)); // Dispatch signInSuccess with user data
-      navigate("/");
+      navigate("/questionnaire");
     } catch (error) {
       dispatch(signInFailure(error));
     }
   };
 
   return (
-    <div className="p-3 max-w-lg mx-auto">
-      <h1 className="text-3xl text-center font-semibold my-7">Sign In</h1>
-      <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-        <input
-          type="email"
-          placeholder="Email"
-          id="email"
-          className="bg-slate-100 p-3 rounded-lg"
-          onChange={handleChange}
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          id="password"
-          className="bg-slate-100 p-3 rounded-lg"
-          onChange={handleChange}
-        />
-        <button
-          disabled={loading}
-          className="bg-slate-700 text-white p-3 rounded-lg uppercase hover:opacity-95 disabled:opacity-80"
-        >
-          {loading ? "Loading..." : "Sign In"}
-        </button>
-        <OAuth />
-      </form>
-      <div className="flex gap-2 mt-5">
-        <p>Dont Have an account?</p>
-        <Link to="/sign-up">
-          <span className="text-blue-500">Sign up</span>
-        </Link>
+    <div className="flex items-center justify-center min-h-screen bg-[#F8F5F2] bg-login">
+      <div className="text-center  glass shadow-lg p-6 rounded-2xl lg:w-1/3 md:w-1/3">
+        <h1 className="text-3xl font-bold mb-4">Sign In</h1>{" "}
+        <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+          <input
+            type="email"
+            placeholder="Email"
+            id="email"
+            className="w-full p-2 bg-slate-100 border  border-gray-300 shadow-sm rounded-md mt-1"
+            onChange={handleChange}
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            id="password"
+            className="w-full p-2 bg-slate-100 border  border-gray-300 shadow-sm rounded-md mt-1"
+            onChange={handleChange}
+          />
+          <button
+            disabled={loading}
+            className="w-full p-2 border border-gray-300 shadow-sm rounded-md mt-1  px-6 py-2 text-sm font-medium hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
+          >
+            {loading ? "Loading..." : "Sign In"}
+          </button>
+          <OAuth />
+        </form>
+        <div className="flex gap-2 mt-5">
+          <p>Dont Have an account?</p>
+          <Link to="/sign-up">
+            <span className="text-blue-500">Sign up</span>
+          </Link>
+        </div>
+        <p className="text-red-700 mt-5">
+          {error ? error.message || "Something went wrong!" : ""}
+        </p>
       </div>
-      <p className="text-red-700 mt-5">
-        {error ? error.message || "Something went wrong!" : ""}
-      </p>
     </div>
   );
 }

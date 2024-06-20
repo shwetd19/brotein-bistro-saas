@@ -29,7 +29,7 @@ export default function OAuth() {
       const data = await res.json();
       console.log(data);
       dispatch(signInSuccess(data));
-      navigate("/");
+      navigate("/questionnaire");
     } catch (error) {
       console.log("Could not login with Google", error);
     }
@@ -40,7 +40,7 @@ export default function OAuth() {
     <button
       type="button"
       onClick={handleGoogleClick}
-      className="w-full p-2 border border-gray-300 shadow-sm rounded mt-1 flex items-center   px-6 py-2 text-sm font-medium hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
+      className="w-full p-2 border border-gray-300 shadow-sm rounded-md mt-1 flex items-center   px-6 py-2 text-sm font-medium hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
     >
       <svg
         className="h-6 w-6 mr-2"

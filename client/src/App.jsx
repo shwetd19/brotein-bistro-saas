@@ -44,6 +44,7 @@ export default function App() {
           />
           <Route path="/meal-records" element={<MealRecords />} />
           <Route path="/meal-records/:id" element={<MealRecordDetails />} />
+
         </Route>
       </Routes>
     </BrowserRouter>
