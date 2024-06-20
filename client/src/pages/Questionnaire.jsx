@@ -11,15 +11,15 @@ const questions = [
       { text: "diabeties", image: "https://via.placeholder.com/50" },
     ],
   },
-  {
-    question: "what is your gender?",
-    options: [
-      { text: "male", image: "https://via.placeholder.com/50" },
-      { text: "female", image: "https://via.placeholder.com/50" },
-      //   { text: "30", image: "https://via.placeholder.com/50" },
-      //   { text: "40", image: "https://via.placeholder.com/50" },
-    ],
-  },
+  // {
+  //   question: "what is your gender?",
+  //   options: [
+  //     { text: "male", image: "https://via.placeholder.com/50" },
+  //     { text: "female", image: "https://via.placeholder.com/50" },
+  //     //   { text: "30", image: "https://via.placeholder.com/50" },
+  //     //   { text: "40", image: "https://via.placeholder.com/50" },
+  //   ],
+  // },
   {
     question: "diet type?",
     options: [
@@ -29,15 +29,15 @@ const questions = [
       { text: "vegan", image: "https://via.placeholder.com/50/ffff00" },
     ],
   },
-  {
-    question: "food type?",
-    options: [
-      { text: "veg", image: "https://via.placeholder.com/50" },
-      { text: "nonveg", image: "https://via.placeholder.com/50" },
-      { text: "eggs", image: "https://via.placeholder.com/50" },
-      //   { text: "Gaming", image: "https://via.placeholder.com/50" },
-    ],
-  },
+  // {
+  //   question: "food type?",
+  //   options: [
+  //     { text: "veg", image: "https://via.placeholder.com/50" },
+  //     { text: "nonveg", image: "https://via.placeholder.com/50" },
+  //     { text: "eggs", image: "https://via.placeholder.com/50" },
+  //     //   { text: "Gaming", image: "https://via.placeholder.com/50" },
+  //   ],
+  // },
 ];
 
 const Questionnaire = () => {
