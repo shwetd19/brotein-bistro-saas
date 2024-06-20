@@ -15,7 +15,6 @@ const ActiveSubscriptionSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    // Updated selectedPlan with the new enum values
     selectedPlan: {
       type: String,
       enum: [
@@ -34,6 +33,19 @@ const ActiveSubscriptionSchema = new mongoose.Schema(
     },
     selectedBranch: {
       type: String,
+      required: true,
+    },
+    DaysLeft: {
+      type: Number,
+    },
+    mealsTaken: [
+      {
+        date: { type: Date, required: true },
+        plan: { type: String, required: true },
+      },
+    ],
+    totalMealsLeft: {
+      type: Number,
       required: true,
     },
   },

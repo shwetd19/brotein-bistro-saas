@@ -9,6 +9,25 @@ const calculateDaysLeft = (startDate) => {
   return 50 - daysPassed > 0 ? 50 - daysPassed : 0;
 };
 
+const getInitialMeals = (selectedPlan) => {
+  switch (selectedPlan) {
+    case "Basic Mini Bowl":
+      return 26;
+    case "Platinum":
+      return 60;
+    case "Two Times Mini Bowl":
+      return 52;
+    case "150 Grams Protein Source":
+      return 30;
+    case "Premium":
+      return 30;
+    case "200 Grams Protein Source":
+      return 30;
+    default:
+      return 0;
+  }
+};
+
 export const approveAndMoveToActive = async (req, res) => {
   const { id } = req.params;
   const { phoneNumber, address, selectedPlan, startDate, selectedBranch } =
@@ -38,12 +57,12 @@ export const approveAndMoveToActive = async (req, res) => {
       selectedPlan,
       startDate,
       selectedBranch,
+      totalMealsLeft: getInitialMeals(selectedPlan),
     };
 
     console.log("Creating active subscription:", activeSubscriptionData);
 
     const activeSubscription = new ActiveSubscription(activeSubscriptionData);
-
     const savedActiveSubscription = await activeSubscription.save();
 
     await subscription.deleteOne();
@@ -134,6 +153,55 @@ export const deleteActiveSubscription = async (req, res) => {
       .json({ message: "Active subscription deleted successfully" });
   } catch (error) {
     console.error(`Error deleting active subscription for ID: ${id}`, error);
+    res.status(500).json({ message: error.message });
+  }
+};
+
+// Record meal consumption
+export const recordMeal = async (req, res) => {
+  const { username, selectedPlan, date } = req.body;
+
+  try {
+    const subscription = await ActiveSubscription.findOne({ username });
+
+    if (!subscription) {
+      return res.status(404).json({ message: "Active subscription not found" });
+    }
+
+    if (subscription.totalMealsLeft <= 0) {
+      return res.status(400).json({ message: "No meals left" });
+    }
+
+    subscription.mealsTaken.push({ date, plan: selectedPlan });
+    subscription.totalMealsLeft -= 1;
+    await subscription.save();
+
+    res.status(200).json(subscription);
+  } catch (error) {
+    console.error("Error recording meal:", error);
+    res.status(500).json({ message: error.message });
+  }
+};
+
+
+// Fetch meal records for a specific subscription
+export const getMealRecordsBySubscriptionId = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const subscription = await ActiveSubscription.findById(id);
+    if (!subscription) {
+      return res.status(404).json({ message: "Subscription not found" });
+    }
+
+    // Ensure mealsTaken is an array to avoid errors
+    if (!Array.isArray(subscription.mealsTaken)) {
+      subscription.mealsTaken = [];
+    }
+
+    res.status(200).json(subscription);
+  } catch (error) {
+    console.error(`Error fetching meal records for subscription ID: ${id}`, error);
     res.status(500).json({ message: error.message });
   }
 };
