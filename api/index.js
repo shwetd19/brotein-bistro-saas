@@ -1,8 +1,12 @@
 import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
+import cors from "cors"; // Import cors
 import userRoutes from "./routes/user.route.js";
 import authRoutes from "./routes/auth.route.js";
+import subscriptionRoutes from "./routes/subscriptions.route.js";
+import ActiveSubscriptionRoutes from "./routes/activeSubscription.route.js";
+
 import cookieParser from "cookie-parser";
 import path from "path";
 dotenv.config();
@@ -18,16 +22,10 @@ mongoose
 
 const app = express();
 
-// const __dirname = path.resolve();
-
-// app.use(express.static(path.join(__dirname, "/client/dist")));
-
-// app.get("*", (req, res) => {
-//   res.sendFile(path.join(__dirname, "client", "dist", "index.html"));
-// });
+// Apply CORS middleware to enable CORS for all routes
+app.use(cors()); // Add this line
 
 app.use(express.json());
-
 app.use(cookieParser());
 
 app.listen(3000, () => {
@@ -36,6 +34,8 @@ app.listen(3000, () => {
 
 app.use("/api/user", userRoutes);
 app.use("/api/auth", authRoutes);
+app.use("/api/subs", subscriptionRoutes);
+app.use("/api/active/subs", ActiveSubscriptionRoutes);
 
 app.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500;
