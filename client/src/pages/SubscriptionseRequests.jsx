@@ -27,8 +27,14 @@ function SubscriptionRequests() {
         throw new Error("Subscription not found");
       }
 
-      const { phoneNumber, address, selectedPlan, startDate, selectedBranch } =
-        subscription;
+      const {
+        phoneNumber,
+        address,
+        selectedPlan,
+        startDate,
+        selectedBranch,
+        userId,
+      } = subscription; // Destructure userId from the subscription object
 
       const response = await axios.put(`/api/active/subs/approve/${id}`, {
         phoneNumber,
@@ -36,6 +42,7 @@ function SubscriptionRequests() {
         selectedPlan,
         startDate,
         selectedBranch,
+        userId, // Include userId in the request body
       });
 
       console.log("Subscription approved successfully:", response.data);

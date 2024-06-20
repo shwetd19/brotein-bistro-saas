@@ -10,6 +10,7 @@ function SubscriptionPage() {
     selectedPlan: "",
     startDate: "",
     selectedBranch: "",
+    userId: currentUser ? currentUser._id : "", // Include the user's ObjectId in formData
   });
 
   const [minDate, setMinDate] = useState("");
@@ -35,7 +36,7 @@ function SubscriptionPage() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(formData), // formData now includes the user's ObjectId
       });
       const data = await response.json();
       console.log(data);

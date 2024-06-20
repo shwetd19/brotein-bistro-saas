@@ -30,8 +30,14 @@ const getInitialMeals = (selectedPlan) => {
 
 export const approveAndMoveToActive = async (req, res) => {
   const { id } = req.params;
-  const { phoneNumber, address, selectedPlan, startDate, selectedBranch } =
-    req.body;
+  const {
+    phoneNumber,
+    address,
+    selectedPlan,
+    startDate,
+    selectedBranch,
+    userId,
+  } = req.body; // Extract userId from the request body
 
   try {
     let subscription = await Subscription.findById(id);
@@ -45,7 +51,8 @@ export const approveAndMoveToActive = async (req, res) => {
       !address ||
       !selectedPlan ||
       !startDate ||
-      !selectedBranch
+      !selectedBranch ||
+      !userId // Check if userId is present
     ) {
       return res.status(400).json({ message: "Missing required fields" });
     }
@@ -57,6 +64,7 @@ export const approveAndMoveToActive = async (req, res) => {
       selectedPlan,
       startDate,
       selectedBranch,
+      userId, // Include userId in the active subscription data
       totalMealsLeft: getInitialMeals(selectedPlan),
     };
 
@@ -183,7 +191,6 @@ export const recordMeal = async (req, res) => {
   }
 };
 
-
 // Fetch meal records for a specific subscription
 export const getMealRecordsBySubscriptionId = async (req, res) => {
   const { id } = req.params;
@@ -201,7 +208,35 @@ export const getMealRecordsBySubscriptionId = async (req, res) => {
 
     res.status(200).json(subscription);
   } catch (error) {
-    console.error(`Error fetching meal records for subscription ID: ${id}`, error);
+    console.error(
+      `Error fetching meal records for subscription ID: ${id}`,
+      error
+    );
+    res.status(500).json({ message: error.message });
+  }
+};
+
+// Get Meal Records of that Particular User
+
+export const getMealRecordsByUserId = async (req, res) => {
+  const { userId } = req.params;
+
+  try {
+    const subscriptions = await ActiveSubscription.find({ userId });
+    const mealRecords = subscriptions.map((subscription) => {
+      // Ensure mealsTaken is an array to avoid errors
+      if (!Array.isArray(subscription.mealsTaken)) {
+        subscription.mealsTaken = [];
+      }
+      return {
+       ...subscription.toObject(),
+        mealsTaken: subscription.mealsTaken, // Explicitly include mealsTaken in the returned object
+      };
+    });
+
+    res.status(200).json(mealRecords);
+  } catch (error) {
+    console.error(`Error fetching meal records for user ID: ${userId}`, error);
     res.status(500).json({ message: error.message });
   }
 };

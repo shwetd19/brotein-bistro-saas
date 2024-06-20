@@ -7,6 +7,7 @@ import {
   getAllActiveSubscriptions,
   recordMeal,
   getMealRecordsBySubscriptionId,
+  getMealRecordsByUserId,
 } from "../controllers/activeSubscription.controller.js";
 
 const router = express.Router();
@@ -18,5 +19,6 @@ router.patch("/:id", updateActiveSubscription); // Assuming PATCH for partial up
 router.delete("/:id", deleteActiveSubscription); // Endpoint for DELETE operation
 router.post("/recordMeal", recordMeal); // Endpoint for recording meal consumption
 router.get("/:id/meals", getMealRecordsBySubscriptionId); // Endpoint for fetching meal records by subscription ID
+router.get("/users/:userId/meals", getMealRecordsByUserId); // Endpoint for fetching meal records by user ID
 
 export default router;

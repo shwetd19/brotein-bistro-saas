@@ -11,7 +11,9 @@ import PrivateRoute from "./components/PrivateRoute";
 import AdminRoute from "./components/AdminRoute";
 import GetYourMeal from "./pages/GetMeal";
 import MealRecords from "./pages/MealRecords";
-import MealRecordDetails from "./pages/MealRecordDetails"; // Import MealRecordDetails component
+import MealRecordDetails from "./pages/MealRecordDetails";
+import UserProfile from "./pages/ClientProfilePage";
+import SubscribedPlan from "./pages/ClientSubscribedPlan";
 
 export default function App() {
   return (
@@ -24,8 +26,12 @@ export default function App() {
         <Route element={<PrivateRoute />}>
           <Route path="/profile" element={<Profile />} />
           <Route path="/get-your-meal" element={<GetYourMeal />} />
-          <Route path="/meal-records" element={<MealRecords />} />
-          <Route path="/meal-records/:id" element={<MealRecordDetails />} /> {/* Added route for MealRecordDetails */}
+          <Route path="/subscription" element={<SubscriptionPage />} />
+          <Route path="/user-profile/:id" element={<UserProfile />} />
+          <Route
+            path="/user-subscribed-plan/:id"
+            element={<SubscribedPlan />}
+          />
         </Route>
         <Route element={<AdminRoute />}>
           <Route
@@ -36,8 +42,9 @@ export default function App() {
             path="/active-subscriptions"
             element={<ActiveSubscriptions />}
           />
+          <Route path="/meal-records" element={<MealRecords />} />
+          <Route path="/meal-records/:id" element={<MealRecordDetails />} />
         </Route>
-        <Route path="/subscription" element={<SubscriptionPage />} />
       </Routes>
     </BrowserRouter>
   );

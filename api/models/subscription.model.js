@@ -2,6 +2,11 @@ import mongoose from "mongoose";
 
 const subscriptionSchema = new mongoose.Schema(
   {
+    userId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User', // Reference the User model
+      required: true,
+    },
     username: {
       type: String,
       required: true,
@@ -15,7 +20,6 @@ const subscriptionSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    // Updated selectedPlan field with the new plan names
     selectedPlan: {
       type: String,
       enum: [
