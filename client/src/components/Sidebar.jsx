@@ -5,7 +5,7 @@ const Sidebar = () => {
 
   const getLinkClasses = (path) => {
     return location.pathname === path
-      ? "text-lg bg-[#f8f5f2] p-2 m-1 shadow-sm border rounded-lg block"
+      ? "text-lg bg-[#F6F6F6] p-2 m-1 shadow-sm border rounded-lg block"
       : "text-lg p-2 m-1 w-full block";
   };
 

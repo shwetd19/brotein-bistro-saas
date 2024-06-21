@@ -25,7 +25,7 @@ const Bmi = () => {
   };
 
   return (
-    <div className=" bg-[#F8F5F2] min-h-screen p-10 pt-20">
+    <div className=" bg-[#F8F5F2] min-h-screen p-10 pt-20 ">
       <div className="grid md:grid-flow-col lg:grid-flow-col sm:grid-flow-row md:grid-cols-2 lg:grid-cols-2  gap-6">
         <div className=" sm:p-6 lg:px-20 md:px-14  ">
           <h1 className="text-2xl font-bold mb-4">BMI Calculator</h1>
@@ -81,56 +81,48 @@ const Bmi = () => {
           >
             Calculate
           </button>
-          <div className="mt-4 flex items-center justify-center">
-            {/* <Link
-                role="button"
-                to="/plans"
-                className="w-full bg-[#FF6F61] text-white p-2 rounded"
-              >
-                go to plans
-              </Link> */}
-          </div>
         </div>
-        <div className="p-6 lg:px-20 md:px-14  rounded-2xl bg-white">
-          {/* <div> */}
-          {/* <h1 className="text-xl font-semibold mb-2">Your Results</h1> */}
+        <div className="p-2 lg:px-20 md:px-14  rounded-2xl bg-white ">
+          <p className="mt-2">
+            A BMI between 18.5 and 24.9 is considered normal weight, reducing
+            the risk of weight-related health issues.
+          </p>
+          <hr />
           {bmi && (
-            <div className="mt-6">
-              <h2 className="text-xl font-bold">Your results</h2>
-              <p>BMI: {bmi}</p>
+            <div className="">
+              <h2 className="text-xl ">Your results:</h2>
+              <p className="bg-bmi p-32 text-center text-2xl font-bold">
+                BMI: {bmi}
+              </p>
               <div className="grid grid-flow-col col-span-2  ">
                 <div>
                   <p
                     className={` p-2 ${
                       bmiCategory === "underweight"
-                        ? "text-blue-500"
+                        ? "text-[#8093F1]"
                         : bmiCategory === "normal weight"
-                        ? "text-green-500"
+                        ? "text-[#44A1A0]"
                         : bmiCategory === "overweight"
-                        ? "text-yellow-500"
-                        : "text-red-500"
+                        ? "text-[#F3A712]"
+                        : "text-[#EC6170]"
                     }`}
                   >
                     {bmiCategory}
                   </p>
                 </div>
-                <div className="my-2">
-                  <Link
-                    to="/Plans"
-                    className="w-full bg-[#FF6F61] text-white p-2 rounded"
-                  >
-                    go to plans
-                  </Link>
-                </div>
               </div>
             </div>
           )}
-          <hr />
-          <p className="mt-2">
-            A BMI between 18.5 and 24.9 is considered normal weight, reducing
-            the risk of weight-related health issues.
-          </p>
-          <img placeholder="bmi" src="bmi.png" />
+          <div className="flex items-center ">
+            <h1 className="mb-2 text-xl mr-2 ">
+              See Plans Best Fitted For You:
+            </h1>
+            <Link to="/Plans" className="button">
+              go to plans
+            </Link>
+          </div>
+
+          {/* <img placeholder="bmi" src="bmi.png" /> */}
           {/* </div> */}
         </div>
       </div>

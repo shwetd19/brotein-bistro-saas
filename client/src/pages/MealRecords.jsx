@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom"; // Import Link
 import Sidebar from "../components/Sidebar";
@@ -31,13 +31,13 @@ const MealRecords = () => {
       <div className="">
         <Sidebar />
       </div>
-      <div className="container mx-auto p-10 pt-20">
+      <div className="container mx-auto p-4 pt-20">
         <h1 className="text-2xl font-bold mb-4">Meal Records</h1>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {subscriptions.map((sub) => (
             <div
               key={sub._id}
-              className="glass shadow-lg rounded-lg overflow-hidden"
+              className="bg-[#F6F6F6]   rounded-lg border overflow-hidden"
             >
               <div className="px-6 py-4">
                 <h2 className="text-xl font-semibold">{sub.username}</h2>

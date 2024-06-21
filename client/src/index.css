@@ -6,7 +6,7 @@
 :root {
   font-family: "Montserrat", sans-serif;
   font-optical-sizing: auto;
-  background-color: #f8f5f2;
+  background-color: #ffffff;
   font-weight: 500;
   font-style: normal;
   line-height: 1.5;
@@ -14,7 +14,7 @@
 }
 
 .button {
-  width: 100%;
+  /* width: 100%; */
   padding: 0.5rem 1rem;
   background-color: #ff6f61;
   color: white;
@@ -38,9 +38,20 @@
   /* background-image: url("q1.jpg"); */
   /* background-image: url("bg4.jpg"); */
   /* background-image: url("1977163.jpg"); */
-  /* background-image: url("bg3.avif"); */
+  background-image: url("question.png");
   background-size: cover;
   background-position: center;
+  /* background-color: rgba(255, 255, 255, 0.3); */
+  /* background-attachment: fixed; */
+}
+.bg-bmi {
+  /* background-image: url("q1.jpg"); */
+  /* background-image: url("bg4.jpg"); */
+  /* background-image: url("1977163.jpg"); */
+  background-image: url("bmi2.png");
+  background-size: cover;
+  background-position: center;
+  /* background-color: rgba(255, 255, 255, 0.3); */
   /* background-attachment: fixed; */
 }
 

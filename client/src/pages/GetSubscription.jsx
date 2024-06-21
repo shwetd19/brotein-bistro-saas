@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 const SubscriptionPage = () => {
   const { currentUser } = useSelector((state) => state.user);
   const location = useLocation();
+  const navigate = useNavigate();
   const { selectedPlan } = location.state || {};
 
   const [formData, setFormData] = useState({
@@ -43,10 +44,9 @@ const SubscriptionPage = () => {
         body: JSON.stringify(formData),
       });
       const data = await response.json();
-      console.log(data);
       setLoading(false);
       if (response.ok) {
-        // Handle success
+        navigate(`/user-subscribed-plan/${currentUser._id}`);
       } else {
         throw new Error("Failed to create subscription");
       }
@@ -70,14 +70,6 @@ const SubscriptionPage = () => {
           >
             Hello, {formData.username}
           </label>
-          {/* <input
-            id="selectedPlan"
-            type="text"
-            name="selectedPlan"
-            value={formData.selectedPlan}
-            readOnly
-            className="w-full p-2 mb-1 border border-gray-300 rounded bg-gray-100"
-          /> */}
           <label
             className="block w-full mb-1 text-2xl font-semibold"
             id="selectedPlan"
@@ -114,10 +106,6 @@ const SubscriptionPage = () => {
             className="w-full p-2 mb-1 border border-gray-300 rounded"
           />
         </div>
-        {/* <label htmlFor="selectedPlan" className="block mb-1">
-          Selected Plan:
-        </label> */}
-
         <label htmlFor="startDate" className="block mb-1">
           When do you want to start?
         </label>

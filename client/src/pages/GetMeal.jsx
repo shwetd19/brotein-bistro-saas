@@ -29,7 +29,7 @@ const GetMeal = () => {
     <div className="flex items-center justify-center h-screen ">
       <form
         onSubmit={handleSubmit}
-        className="glass shadow-md rounded-lg px-8 pt-6 pb-8 mb-4 "
+        className="glass  shadow-md rounded-lg px-8 pt-6 pb-8 mb-4 "
       >
         <div className="mb-4">
           <label

@@ -38,24 +38,31 @@ export default function Header() {
           >
             Subscriptions Requests
           </Link>
-          <Link
+          {/* <Link
             to="/active-subscriptions"
             className="rounded-full font-semibold py-2 px-4 md:mr-5 lg:mr-5 sm:mr-1 border-black border shadow-md"
           >
             Active Subscriptions
-          </Link>
-          <Link
+          </Link> */}
+          {/* <Link
             to="/meal-records"
             className="rounded-full font-semibold py-2 px-4 md:mr-5 lg:mr-5 sm:mr-1 border-black border shadow-md"
           >
             Meal Records
-          </Link>
-          <Link
+          </Link> */}
+          {/* <Link
             to="/get-your-meal"
             className="rounded-full font-semibold py-2 px-4 md:mr-5 lg:mr-5 sm:mr-1 border-black border shadow-md"
           >
             Get Your Meal
-          </Link>
+          </Link> */}
+
+          <button
+            onClick={handleUserProfileClick}
+            className="rounded-full font-semibold py-2 px-4 md:mr-5 lg:mr-5 sm:mr-1 border-black border shadow-md"
+          >
+            User Profile
+          </button>
           <Link
             className="rounded-full font-semibold py-2 px-4 md:mr-5 lg:mr-5 sm:mr-1 border-black border shadow-md"
             to="/profile"
@@ -70,18 +77,12 @@ export default function Header() {
               <li>Sign In</li>
             )}
           </Link>
-          <button
-            onClick={handleUserProfileClick}
-            className="rounded-full font-semibold py-2 px-4 md:mr-5 lg:mr-5 sm:mr-1 border-black border shadow-md"
-          >
-            User Profile
-          </button>
-          <button
+          {/* <button
             onClick={handleUserSubscribedPlanClick}
             className="rounded-full font-semibold py-2 px-4 md:mr-5 lg:mr-5 sm:mr-1 border-black border shadow-md"
           >
             Subscribed Plan
-          </button>
+          </button> */}
         </ul>
       </div>
     </div>

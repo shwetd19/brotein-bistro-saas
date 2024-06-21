@@ -28,33 +28,33 @@ function ActiveSubscriptions() {
       <div className="">
         <Sidebar />
       </div>
-      <div className="flex flex-col items-center justify-center pt-20 p-10  ">
+      <div className="pt-20 p-10  ">
         {/* <h1 className="text-2xl font-bold mb-5">Active Subscriptions</h1> */}
-        <table className="w-full  rounded-lg ">
-          <thead className=" bg-white shadow-sm ">
+        <div className="w-full  rounded-xl border ">
+          <thead className=" bg-[#F6F6F6]  rounded-xl ">
             <tr className=" ">
-              <th className="px-4 py-2 text-sm font-semibold text-gray-700 rounded-tl-xl ">
+              <th className="px-4 py-2 text-sm font-semibold text-gray-700 rounded-tl-xl border-b">
                 Index
               </th>
-              <th className="px-4 py-2 text-sm font-semibold text-gray-700">
+              <th className="px-4 py-2 text-sm font-semibold text-gray-700 border-b">
                 Username
               </th>
-              <th className="px-4 py-2 text-sm font-semibold text-gray-700">
+              <th className="px-4 py-2 text-sm font-semibold text-gray-700 border-b">
                 Phone Number
               </th>
-              <th className="px-4 py-2 text-sm font-semibold text-gray-700">
+              <th className="px-4 py-2 text-sm font-semibold text-gray-700 border-b">
                 Address
               </th>
-              <th className="px-4 py-2 text-sm font-semibold text-gray-700">
-                Selected Plan
+              <th className="px-4 py-2 text-sm font-semibold text-gray-700 border-b">
+                Plan
               </th>
-              <th className="px-4 py-2 text-sm font-semibold text-gray-700">
+              <th className="px-4 py-2 text-sm font-semibold text-gray-700 border-b">
                 Starting Date
               </th>
-              <th className="px-4 py-2 text-sm font-semibold text-gray-700">
-                Selected Branch
+              <th className="px-4 py-2 text-sm font-semibold text-gray-700 border-b">
+                Branch
               </th>
-              <th className="px-4 py-2 text-sm font-semibold text-gray-700 rounded-tr-xl">
+              <th className="px-4 py-2 text-sm font-semibold text-gray-700 rounded-tr-xl border-b">
                 Days Left
               </th>
             </tr>
@@ -63,22 +63,22 @@ function ActiveSubscriptions() {
             {activeSubscriptions.map((subscription, index) => (
               <tr
                 key={subscription._id}
-                className="hover:bg-white transition duration-150 ease-in-out"
+                className="hover:bg-[#F6F6F6] transition duration-150 ease-in-out"
               >
-                <td className="px-4 py-2">{index + 1}</td>
-                <td className="px-4 py-2">{subscription.username}</td>
-                <td className="px-4 py-2">{subscription.phoneNumber}</td>
-                <td className="px-4 py-2">{subscription.address}</td>
-                <td className="px-4 py-2">{subscription.selectedPlan}</td>
-                <td className="px-4 py-2">
+                <td className="px-4 py-2 border-b">{index + 1}</td>
+                <td className="px-4 py-2 border-b">{subscription.username}</td>
+                <td className="px-4 py-2 border-b">{subscription.phoneNumber}</td>
+                <td className="px-4 py-2 border-b">{subscription.address}</td>
+                <td className="px-4 py-2 border-b">{subscription.selectedPlan}</td>
+                <td className="px-4 py-2 border-b">
                   {new Date(subscription.startDate).toLocaleDateString()}
                 </td>
-                <td className="px-4 py-2">{subscription.selectedBranch}</td>
-                <td className="px-4 py-2">{subscription.DaysLeft}</td>
+                <td className="px-4 py-2 border-b">{subscription.selectedBranch}</td>
+                <td className="px-4 py-2 border-b">{subscription.DaysLeft}</td>
               </tr>
             ))}
           </tbody>
-        </table>
+        </div>
       </div>
     </div>
   );
