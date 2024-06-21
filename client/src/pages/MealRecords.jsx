@@ -27,7 +27,7 @@ const MealRecords = () => {
   }, []);
 
   return (
-    <div className="grid md:grid-flow-col lg:grid-flow-col md:col-span-2 lg:col-span-2 bg-white ">
+    <div className="grid md:grid-flow-col lg:grid-flow-col md:col-span-2 lg:col-span-2  ">
       <div className="">
         <Sidebar />
       </div>

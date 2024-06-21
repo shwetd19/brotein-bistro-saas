@@ -70,16 +70,16 @@ function SubscriptionRequests() {
   if (isLoading) return <div>Loading...</div>;
 
   return (
-    <div className="grid md:grid-flow-col lg:grid-flow-col md:col-span-2 lg:col-span-2 bg-white ">
+    <div className="grid md:grid-flow-col lg:grid-flow-col md:col-span-2 lg:col-span-2  ">
       <div className="">
         <Sidebar />
       </div>
       <div className="flex flex-col items-center justify-center pt-20 p-10">
-        <h1 className="text-2xl font-bold mb-5">Subscriptions</h1>
-        <table className="w-full border-collapse">
-          <thead className="border-b">
+        {/* <h1 className="text-2xl font-bold mb-5">Subscriptions</h1> */}
+        <table className="w-full  rounded-lg ">
+          <thead className=" bg-white shadow-sm ">
             <tr>
-              <th className="px-4 py-2 text-sm font-semibold text-gray-700">
+              <th className="px-4 py-2 text-sm font-semibold text-gray-700 rounded-tl-xl ">
                 Index
               </th>
               <th className="px-4 py-2 text-sm font-semibold text-gray-700">
@@ -100,12 +100,12 @@ function SubscriptionRequests() {
               <th className="px-4 py-2 text-sm font-semibold text-gray-700">
                 Selected Branch
               </th>
-              <th className="px-4 py-2 text-sm font-semibold text-gray-700">
+              <th className="px-4 py-2 text-sm font-semibold text-gray-700 rounded-tr-xl">
                 Actions
               </th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className="border">
             {subscriptions.map((subscription, index) => (
               <tr
                 key={subscription._id}
