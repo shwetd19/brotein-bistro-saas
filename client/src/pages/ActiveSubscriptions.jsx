@@ -28,12 +28,12 @@ function ActiveSubscriptions() {
       <div className="">
         <Sidebar />
       </div>
-      <div className="flex flex-col items-center justify-center pt-20 p-10">
+      <div className="flex flex-col items-center justify-center pt-20 p-10  ">
         {/* <h1 className="text-2xl font-bold mb-5">Active Subscriptions</h1> */}
-        <table className="w-full border-collapse border rounded-lg block">
-          <thead className=" bg-white  border-t rounded-t-lg  block">
-            <tr>
-              <th className="px-4 py-2 text-sm font-semibold text-gray-700">
+        <table className="w-full  rounded-lg ">
+          <thead className=" bg-white shadow-sm ">
+            <tr className=" ">
+              <th className="px-4 py-2 text-sm font-semibold text-gray-700 rounded-tl-xl ">
                 Index
               </th>
               <th className="px-4 py-2 text-sm font-semibold text-gray-700">
@@ -54,12 +54,12 @@ function ActiveSubscriptions() {
               <th className="px-4 py-2 text-sm font-semibold text-gray-700">
                 Selected Branch
               </th>
-              <th className="px-4 py-2 text-sm font-semibold text-gray-700 ">
+              <th className="px-4 py-2 text-sm font-semibold text-gray-700 rounded-tr-xl">
                 Days Left
               </th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className="border">
             {activeSubscriptions.map((subscription, index) => (
               <tr
                 key={subscription._id}
@@ -68,7 +68,7 @@ function ActiveSubscriptions() {
                 <td className="px-4 py-2">{index + 1}</td>
                 <td className="px-4 py-2">{subscription.username}</td>
                 <td className="px-4 py-2">{subscription.phoneNumber}</td>
-                <td className="px-4 py-2 ">{subscription.address}</td>
+                <td className="px-4 py-2">{subscription.address}</td>
                 <td className="px-4 py-2">{subscription.selectedPlan}</td>
                 <td className="px-4 py-2">
                   {new Date(subscription.startDate).toLocaleDateString()}

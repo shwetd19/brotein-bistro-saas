@@ -27,7 +27,7 @@ const MealRecords = () => {
   }, []);
 
   return (
-    <div className="grid md:grid-flow-col lg:grid-flow-col md:col-span-2 lg:col-span-2 bg-white ">
+    <div className="grid md:grid-flow-col lg:grid-flow-col md:col-span-2 lg:col-span-2  ">
       <div className="">
         <Sidebar />
       </div>
@@ -42,12 +42,17 @@ const MealRecords = () => {
               <div className="px-6 py-4">
                 <h2 className="text-xl font-semibold">{sub.username}</h2>
                 <p className="mt-2">Plan: {sub.selectedPlan}</p>
-                <p className="mt-2">
-                  Meals Left: {sub.totalMealsLeft} / {sub.totalMeals}
-                </p>
+                <p className="mt-2">Meals Left: {sub.totalMealsLeft} / {sub.totalMeals}</p>
                 <p className="mt-2">Days Left: {sub.DaysLeft}</p>
               </div>
               <div className="border-t border-gray-200"></div>
+              {/* <ul className="px-6 py-4">
+              {sub.mealsTaken.map((meal, index) => (
+                <li key={index} className="mt-2">
+                  {meal.date} - {meal.plan}
+                </li>
+              ))}
+            </ul> */}
               <div className="px-6 py-4 mt-4">
                 <Link to={`/meal-records/${sub._id}`} className="button">
                   View Meal Records
