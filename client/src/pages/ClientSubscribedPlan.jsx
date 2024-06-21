@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+// SubscribedPlan.jsx
+import { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
 
 const SubscribedPlan = () => {
   const { id } = useParams();
@@ -43,54 +44,94 @@ const SubscribedPlan = () => {
 
   if (!subscriptionData) {
     return (
-      <div className="flex justify-center items-center h-screen bg-gray-100">
-        Loading...
+      <div className="flex flex-col justify-center items-center h-screen  text-2xl capitalize ">
+        <img placeholder="records" src="/records.svg" className="w-10" />
+        <h1>
+          Hang on a sec... <br />
+          Our Admin Will Provide You Access.
+        </h1>
       </div>
     );
   }
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
-      <div className="bg-white p-6 rounded-lg shadow-md w-full max-w-xs">
-        <h1 className="text-xl font-bold mb-4">Subscribed Plan Details</h1>
-        <table className="w-full text-left">
-          <tbody>
-            <tr>
-              <td className="font-semibold">Selected Plan:</td>
-              <td>{subscriptionData.selectedPlan}</td>
-            </tr>
-            <tr>
-              <td className="font-semibold">Start Date:</td>
-              <td>
-                {new Date(subscriptionData.startDate).toLocaleDateString()}
-              </td>
-            </tr>
-            <tr>
-              <td className="font-semibold">Selected Branch:</td>
-              <td>{subscriptionData.selectedBranch}</td>
-            </tr>
-            <tr>
-              <td className="font-semibold">Total Meals Left:</td>
-              <td>
-                {subscriptionData.totalMealsLeft} /{" "}
-                {subscriptionData.totalMealsOfThatPlan}
-              </td>
-            </tr>
-            <tr>
-              <td className="font-semibold">Days Left:</td>
-              <td>{subscriptionData.DaysLeft}</td>
-            </tr>
-          </tbody>
-        </table>
-        <h2 className="mt-4 font-bold">Meals Taken</h2>
-        <ul>
-          {subscriptionData.mealsTaken.map((meal, index) => (
-            <li key={index} className="mb-2">
-              Date: {new Date(meal.date).toLocaleDateString()} | Plan:{" "}
-              {meal.plan}
-            </li>
-          ))}
-        </ul>
+    <div className="flex flex-col items-center justify-center  min-h-screen w-full p-10 pt-20">
+      <div>
+        <Link to="/get-your-meal" className=" capitalize button my-5 block ">
+          get your meal now
+        </Link>
+      </div>
+      <div className="grid gap-4 w-full">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 w-full">
+          {/* <div className="backdrop-blur-sm shadow-md p-6 pt-2 rounded-2xl w-full h-44 bg-[#FFEFE2] border ">
+            <img alt="meal" className="w-10" src="/getmeal.svg" />
+            <h1 className="text-xl md:text-2xl mb-6 capitalize">
+              get your meal
+            </h1>
+          </div> */}
+
+          <div className=" shadow-md p-6 pt-2 rounded-2xl w-full h-44   bg-[#EFFCEF] border ">
+            <img alt="meal" className="w-10" src="/taken.svg" />
+            <h1 className="text-xl md:text-xl mb-2 capitalize">Meals Left:</h1>
+            <h1 className="font-semibold text-4xl ">
+              {subscriptionData.totalMealsLeft} /{" "}
+              {subscriptionData.totalMealsOfThatPlan}
+            </h1>
+          </div>
+          <div className=" shadow-md p-6 pt-2 rounded-2xl w-full h-44  bg-[#F4F6FA] border ">
+            <img alt="meal" className="w-10" src="/daysleft.svg" />{" "}
+            <h1 className="text-xl md:text-xl mb-2  capitalize">Days Left:</h1>
+            <h1 className="font-semibold text-4xl ">
+              {subscriptionData.totalMealsLeft}
+            </h1>
+          </div>
+          <div className=" shadow-md p-6 pt-2 rounded-2xl w-full bg-[#FFEFE2] border ">
+            <img alt="meal" className="w-10" src="/plans.svg" />{" "}
+            <div className="text-xl md:text-xl mb-2 capitalize ">
+              Selected Plan:
+            </div>
+            <div className="font-semibold text-4xl">
+              {subscriptionData.selectedPlan}
+            </div>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="glass shadow-md p-6 pt-2 rounded-2xl w-full h-44 bg-[#F4F6FA] border">
+            <img alt="meal" className="w-10" src="/date.svg" />{" "}
+            <div className="text-xl md:text-2xl mb-2 capitalize">
+              Start Date:
+            </div>
+            <div className="font-semibold text-4xl md:text-4xl">
+              {new Date(subscriptionData.startDate).toLocaleDateString()}
+            </div>
+          </div>
+          <div className="glass shadow-md p-6 pt-2 rounded-2xl w-full h-44 bg-[#F4F6FA] border">
+            <img alt="meal" className="w-10" src="/branch.svg" />{" "}
+            <div>
+              <div className="text-xl md:text-2xl mb-2 capitalize">
+                Selected Branch:
+              </div>
+              <div className="font-semibold text-4xl md:text-4xl">
+                {subscriptionData.selectedBranch}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-1 gap-4">
+          <div className="glass shadow-md p-6 pt-2 rounded-2xl w-full col-span-2 bg-[#F4F6FA] border">
+            <img alt="meal" className="w-10" src="/meal.svg" />{" "}
+            <h1 className="text-xl md:text-xl mb-2 capitalize">Meals Taken</h1>
+            <ul>
+              {subscriptionData.mealsTaken.map((meal, index) => (
+                <li key={index} className="mb-2 font-semibold">
+                  Date: {new Date(meal.date).toLocaleDateString()} | Plan:{" "}
+                  {meal.plan}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
   );

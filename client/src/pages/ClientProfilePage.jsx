@@ -28,16 +28,24 @@ const UserProfile = () => {
   }, [id]);
 
   if (error) {
-    return <div className="flex justify-center items-center h-screen bg-gray-100">Error: {error}</div>;
+    return (
+      <div className="flex justify-center items-center h-screen bg-login">
+        Error: {error}
+      </div>
+    );
   }
 
   if (!userData) {
-    return <div className="flex justify-center items-center h-screen bg-gray-100">Loading...</div>;
+    return (
+      <div className="flex justify-center items-center h-screen bg-login">
+        Loading...
+      </div>
+    );
   }
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
-      <div className="bg-white p-6 rounded-lg shadow-md w-full max-w-xs">
+    <div className="flex items-center justify-center min-h-screen bg-[#F8F5F2] bg-login">
+      <div className="text-center  glass shadow-lg p-6 rounded-2xl lg:w-1/3 md:w-1/3">
         <h1 className="text-xl font-bold mb-4">User Profile</h1>
         <table className="w-full text-left">
           <tbody>

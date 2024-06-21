@@ -42,7 +42,7 @@ const MealRecords = () => {
               <div className="px-6 py-4">
                 <h2 className="text-xl font-semibold">{sub.username}</h2>
                 <p className="mt-2">Plan: {sub.selectedPlan}</p>
-                <p className="mt-2">Meals Left: {sub.totalMealsLeft} / {sub.totalMeals}</p>
+                <p className="mt-2">Meals Left: {sub.totalMealsLeft}</p>
                 <p className="mt-2">Days Left: {sub.DaysLeft}</p>
               </div>
               <div className="border-t border-gray-200"></div>

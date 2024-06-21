@@ -22,7 +22,7 @@ const MealRecordDetails = () => {
   }, [id]);
 
   return (
-    <div className="container mx-auto p-4">
+    <div className="container mx-auto p-4 pt-20">
       <h1 className="text-2xl font-bold mb-4">Meal Records</h1>
       <div className="bg-white shadow-lg rounded-lg overflow-hidden p-6 mb-4">
         <h2 className="text-xl font-semibold mb-2">

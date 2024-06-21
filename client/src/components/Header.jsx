@@ -26,12 +26,12 @@ export default function Header() {
       </div>
       <div className="flex justify-end">
         <ul className="flex justify-end items-center lg:mx-5 md:mx-5 sm:mx-3">
-          <Link
+          {/* <Link
             to="/"
             className="rounded-full font-semibold py-2 px-4 md:mr-5 lg:mr-5 sm:mr-1 border-black border shadow-md"
           >
             Home
-          </Link>
+          </Link> */}
           <Link
             to="/subscriptionse-requests"
             className="rounded-full font-semibold py-2 px-4 md:mr-5 lg:mr-5 sm:mr-1 border-black border shadow-md"
