@@ -89,12 +89,14 @@ export const approveAndMoveToActive = async (req, res) => {
 export const getAllActiveSubscriptions = async (req, res) => {
   try {
     const subscriptions = await ActiveSubscription.find({});
-    const subscriptionsWithDaysLeft = subscriptions.map((subscription) => {
+    const subscriptionsWithDetails = subscriptions.map((subscription) => {
       const subscriptionObject = subscription.toObject();
+      const totalMeals = getInitialMeals(subscription.selectedPlan);
       subscriptionObject.DaysLeft = calculateDaysLeft(subscription.startDate);
+      subscriptionObject.totalMeals = totalMeals; // Include total meals
       return subscriptionObject;
     });
-    res.status(200).json(subscriptionsWithDaysLeft);
+    res.status(200).json(subscriptionsWithDetails);
   } catch (error) {
     console.error("Error retrieving all active subscriptions:", error);
     res.status(500).json({ message: error.message });
@@ -111,16 +113,18 @@ export const getActiveSubscriptionById = async (req, res) => {
       return res.status(404).json({ message: "Active subscription not found" });
     }
 
-    // Calculate DaysLeft
+    // Calculate DaysLeft and total meals
     const DaysLeft = calculateDaysLeft(subscription.startDate);
+    const totalMeals = getInitialMeals(subscription.selectedPlan);
 
-    // Include DaysLeft in the response
-    const subscriptionWithDaysLeft = {
+    // Include DaysLeft and total meals in the response
+    const subscriptionWithDetails = {
       ...subscription.toObject(),
       DaysLeft,
+      totalMeals,
     };
 
-    res.status(200).json(subscriptionWithDaysLeft);
+    res.status(200).json(subscriptionWithDetails);
   } catch (error) {
     console.error(`Error finding active subscription for ID: ${id}`, error);
     res.status(500).json({ message: error.message });
@@ -166,11 +170,12 @@ export const deleteActiveSubscription = async (req, res) => {
 };
 
 // Record meal consumption
+// Record meal consumption
 export const recordMeal = async (req, res) => {
   const { username, selectedPlan, date } = req.body;
 
   try {
-    const subscription = await ActiveSubscription.findOne({ username });
+    let subscription = await ActiveSubscription.findOne({ username });
 
     if (!subscription) {
       return res.status(404).json({ message: "Active subscription not found" });
@@ -180,8 +185,14 @@ export const recordMeal = async (req, res) => {
       return res.status(400).json({ message: "No meals left" });
     }
 
+    // Update mealsTaken array
     subscription.mealsTaken.push({ date, plan: selectedPlan });
-    subscription.totalMealsLeft -= 1;
+
+    // Update totalMealsLeft based on the difference
+    const totalMealsOfThatPlan = getInitialMeals(subscription.selectedPlan);
+    const mealsTakenCount = subscription.mealsTaken.length;
+    subscription.totalMealsLeft = totalMealsOfThatPlan - mealsTakenCount;
+
     await subscription.save();
 
     res.status(200).json(subscription);
@@ -190,6 +201,7 @@ export const recordMeal = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+
 
 // Fetch meal records for a specific subscription
 export const getMealRecordsBySubscriptionId = async (req, res) => {
@@ -218,25 +230,52 @@ export const getMealRecordsBySubscriptionId = async (req, res) => {
 
 // Get Meal Records of that Particular User
 
+// Get Meal Records of that Particular User
 export const getMealRecordsByUserId = async (req, res) => {
   const { userId } = req.params;
 
   try {
     const subscriptions = await ActiveSubscription.find({ userId });
-    const mealRecords = subscriptions.map((subscription) => {
+    const mealRecords = subscriptions.map(async (subscription) => {
+      // Calculate DaysLeft and total meals for each subscription
+      const DaysLeft = calculateDaysLeft(subscription.startDate);
+      const totalMealsOfThatPlan = getInitialMeals(subscription.selectedPlan); // Total meals for the selected plan
+
       // Ensure mealsTaken is an array to avoid errors
       if (!Array.isArray(subscription.mealsTaken)) {
         subscription.mealsTaken = [];
       }
+
+      // Calculate totalMealsLeft based on mealsTaken array
+      const mealsTakenCount = subscription.mealsTaken.length;
+      const totalMealsLeft = totalMealsOfThatPlan - mealsTakenCount;
+
       return {
-       ...subscription.toObject(),
+        ...subscription.toObject(),
         mealsTaken: subscription.mealsTaken, // Explicitly include mealsTaken in the returned object
+        DaysLeft, // Include DaysLeft in the response
+        totalMealsLeft, // Include total meals left in the response
+        totalMealsOfThatPlan, // Include total meals of that plan in the response
       };
     });
 
-    res.status(200).json(mealRecords);
+    const mealRecordsWithDetails = await Promise.all(mealRecords);
+    res.status(200).json(mealRecordsWithDetails);
   } catch (error) {
     console.error(`Error fetching meal records for user ID: ${userId}`, error);
+    res.status(500).json({ message: error.message });
+  }
+};
+
+
+
+// Function to get count of all active subscriptions
+export const getCountOfActiveSubscriptions = async (req, res) => {
+  try {
+    const count = await ActiveSubscription.countDocuments({});
+    res.status(200).json(count);
+  } catch (error) {
+    console.error("Error getting count of active subscriptions:", error);
     res.status(500).json({ message: error.message });
   }
 };

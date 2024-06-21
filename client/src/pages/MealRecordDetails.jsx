@@ -29,7 +29,10 @@ const MealRecordDetails = () => {
           {subscriptionDetails.username}
         </h2>
         <p>Plan: {subscriptionDetails.selectedPlan}</p>
-        <p>Meals Left: {subscriptionDetails.totalMealsLeft}</p>
+        <p>
+          Meals Left: {subscriptionDetails.totalMealsLeft} /{" "}
+          {subscriptionDetails.totalMeals}
+        </p>
         <p>Days Left: {subscriptionDetails.DaysLeft}</p>
       </div>
       <div className="overflow-x-auto">

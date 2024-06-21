@@ -8,17 +8,33 @@ import {
   recordMeal,
   getMealRecordsBySubscriptionId,
   getMealRecordsByUserId,
+  getCountOfActiveSubscriptions,
 } from "../controllers/activeSubscription.controller.js";
 
 const router = express.Router();
 
 router.put("/approve/:id", approveAndMoveToActive);
-router.get("/getAllActiveSubs", getAllActiveSubscriptions); // Endpoint for getting all active subscriptions
-router.get("/:id", getActiveSubscriptionById); // Endpoint for GET operation
-router.patch("/:id", updateActiveSubscription); // Assuming PATCH for partial updates
-router.delete("/:id", deleteActiveSubscription); // Endpoint for DELETE operation
-router.post("/recordMeal", recordMeal); // Endpoint for recording meal consumption
-router.get("/:id/meals", getMealRecordsBySubscriptionId); // Endpoint for fetching meal records by subscription ID
-router.get("/users/:userId/meals", getMealRecordsByUserId); // Endpoint for fetching meal records by user ID
+// Endpoint for getting all active subscriptions
+router.get("/getAllActiveSubs", getAllActiveSubscriptions);
 
+// Endpoint for GET operation
+router.get("/:id", getActiveSubscriptionById);
+
+// Assuming PATCH for partial updates
+router.patch("/:id", updateActiveSubscription);
+
+// Endpoint for DELETE operation
+router.delete("/:id", deleteActiveSubscription);
+
+// Endpoint for recording meal consumption
+router.post("/recordMeal", recordMeal); // Endpoint for recording meal consumption
+
+// Endpoint for fetching meal records by subscription ID
+router.get("/:id/meals", getMealRecordsBySubscriptionId);
+
+// Endpoint for fetching meal records by user ID
+router.get("/users/:userId/meals", getMealRecordsByUserId);
+
+// New route for getting count of all active subscriptions
+router.get("/getAllActiveSubs/count", getCountOfActiveSubscriptions);
 export default router;
