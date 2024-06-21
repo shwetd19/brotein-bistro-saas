@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import Sidebar from "../components/Sidebar";
 
-function SubscriptionRequests() {
+function SubscriptionseRequests() {
   const [subscriptions, setSubscriptions] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -141,4 +141,4 @@ function SubscriptionRequests() {
   );
 }
 
-export default SubscriptionRequests;
+export default SubscriptionseRequests;

@@ -1,4 +1,3 @@
-// SubscribedPlan.jsx
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
@@ -27,14 +26,27 @@ const SubscribedPlan = () => {
     };
 
     fetchData();
+
+    // Polling to fetch updated data every 10 seconds
+    const interval = setInterval(fetchData, 10000);
+
+    return () => clearInterval(interval); // Cleanup interval on component unmount
   }, [id]);
 
   if (error) {
-    return <div className="flex justify-center items-center h-screen bg-gray-100">Error: {error}</div>;
+    return (
+      <div className="flex justify-center items-center h-screen bg-gray-100">
+        Error: {error}
+      </div>
+    );
   }
 
   if (!subscriptionData) {
-    return <div className="flex justify-center items-center h-screen bg-gray-100">Loading...</div>;
+    return (
+      <div className="flex justify-center items-center h-screen bg-gray-100">
+        Loading...
+      </div>
+    );
   }
 
   return (
@@ -49,7 +61,9 @@ const SubscribedPlan = () => {
             </tr>
             <tr>
               <td className="font-semibold">Start Date:</td>
-              <td>{new Date(subscriptionData.startDate).toLocaleDateString()}</td>
+              <td>
+                {new Date(subscriptionData.startDate).toLocaleDateString()}
+              </td>
             </tr>
             <tr>
               <td className="font-semibold">Selected Branch:</td>
@@ -57,7 +71,14 @@ const SubscribedPlan = () => {
             </tr>
             <tr>
               <td className="font-semibold">Total Meals Left:</td>
-              <td>{subscriptionData.totalMealsLeft}</td>
+              <td>
+                {subscriptionData.totalMealsLeft} /{" "}
+                {subscriptionData.totalMealsOfThatPlan}
+              </td>
+            </tr>
+            <tr>
+              <td className="font-semibold">Days Left:</td>
+              <td>{subscriptionData.DaysLeft}</td>
             </tr>
           </tbody>
         </table>
@@ -65,7 +86,8 @@ const SubscribedPlan = () => {
         <ul>
           {subscriptionData.mealsTaken.map((meal, index) => (
             <li key={index} className="mb-2">
-              Date: {new Date(meal.date).toLocaleDateString()} | Plan: {meal.plan}
+              Date: {new Date(meal.date).toLocaleDateString()} | Plan:{" "}
+              {meal.plan}
             </li>
           ))}
         </ul>

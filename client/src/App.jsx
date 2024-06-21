@@ -17,6 +17,7 @@ import SubscribedPlan from "./pages/ClientSubscribedPlan";
 import Plans from "./pages/Plans";
 import Bmi from "./pages/Bmi";
 import Questionnaire from "./pages/Questionnaire";
+import NotFoundPage from "./pages/NotFoundPage";
 
 export default function App() {
   return (
@@ -24,6 +25,7 @@ export default function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/not-found" element={<NotFoundPage />} />
         <Route path="/sign-in" element={<SignIn />} />
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/Questionnaire" element={<Questionnaire />} />

@@ -1,14 +1,15 @@
-// userSlice.js
-import { createSlice } from '@reduxjs/toolkit';
+// redux/user/userSlice.js
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   currentUser: null,
   loading: false,
   error: null,
+  activeSubscriptions: [], // Ensure activeSubscriptions is initialized
 };
 
 const userSlice = createSlice({
-  name: 'user',
+  name: "user",
   initialState,
   reducers: {
     signInStart: (state) => {

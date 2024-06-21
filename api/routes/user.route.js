@@ -15,7 +15,8 @@ router.post("/update/:id", verifyToken, updateUser); // Update route remains unc
 router.delete("/delete/:id", verifyToken, deleteUser); // Delete route remains unchanged
 
 // New routes
-router.get("/allusers", verifyToken, isAdmin, getAllUsers); // Route to get all users
+// router.get("/allusers", verifyToken, isAdmin, getAllUsers); // Route to get all users
+router.get("/allusers",  getAllUsers); // Route to get all users
 router.get("/:id", verifyToken, getUserById); // Route to get a single user by ID
 
 export default router;
