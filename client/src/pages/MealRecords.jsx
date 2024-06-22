@@ -53,8 +53,11 @@ const MealRecords = () => {
                 </li>
               ))}
             </ul> */}
-              <div className="px-6 py-4 mt-4">
-                <Link to={`/meal-records/${sub._id}`} className="button">
+              <div className="px-6 py-4 mt-4 flex ">
+                <Link
+                  to={`/meal-records/${sub._id}`}
+                  className="button w-full "
+                >
                   View Meal Records
                 </Link>
               </div>

@@ -32,12 +32,19 @@ export default function Header() {
           >
             Home
           </Link> */}
+
           <Link
             to="/subscriptionse-requests"
             className="rounded-full font-semibold py-2 px-4 md:mr-5 lg:mr-5 sm:mr-1 border-black border shadow-md"
           >
             Subscriptions Requests
           </Link>
+          <button
+            onClick={handleUserSubscribedPlanClick}
+            className="rounded-full font-semibold py-2 px-4 md:mr-5 lg:mr-5 sm:mr-1 border-black border shadow-md"
+          >
+            Dashboard
+          </button>
           {/* <Link
             to="/active-subscriptions"
             className="rounded-full font-semibold py-2 px-4 md:mr-5 lg:mr-5 sm:mr-1 border-black border shadow-md"
@@ -77,12 +84,6 @@ export default function Header() {
               <li>Sign In</li>
             )}
           </Link>
-          {/* <button
-            onClick={handleUserSubscribedPlanClick}
-            className="rounded-full font-semibold py-2 px-4 md:mr-5 lg:mr-5 sm:mr-1 border-black border shadow-md"
-          >
-            Subscribed Plan
-          </button> */}
         </ul>
       </div>
     </div>

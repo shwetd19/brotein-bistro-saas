@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const GetMeal = () => {
   const [selectedPlan, setSelectedPlan] = useState("");
@@ -31,14 +32,15 @@ const GetMeal = () => {
         onSubmit={handleSubmit}
         className="glass  shadow-md rounded-lg px-8 pt-6 pb-8 mb-4 "
       >
+        <h1 className="text-xl font-bold">Get Your Meal:</h1>
         <div className="mb-4">
-          <label
+          {/* <label
             className="block text-gray-700 text-sm font-bold mb-2"
             htmlFor="plan"
           >
             Selected Plan
-          </label>
-          <select
+          </label> */}
+          {/* <select
             id="plan"
             value={selectedPlan}
             onChange={(e) => setSelectedPlan(e.target.value)}
@@ -55,7 +57,7 @@ const GetMeal = () => {
             <option value="200 Grams Protein Source">
               200 Grams Protein Source
             </option>
-          </select>
+          </select> */}
         </div>
         <div className="mb-6">
           <label
@@ -75,11 +77,12 @@ const GetMeal = () => {
         <div className="flex items-center justify-between">
           <button
             type="submit"
-            className="button text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            className="button text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full"
           >
             Record Meal
           </button>
         </div>
+        <Link to="">Back to Dashboard</Link>
       </form>
     </div>
   );

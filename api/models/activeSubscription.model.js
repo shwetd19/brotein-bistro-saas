@@ -4,7 +4,7 @@ const ActiveSubscriptionSchema = new mongoose.Schema(
   {
     userId: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'User', // Reference the User model
+      ref: "User", // Reference the User model
       required: true,
     },
     username: {
@@ -46,7 +46,7 @@ const ActiveSubscriptionSchema = new mongoose.Schema(
     mealsTaken: [
       {
         date: { type: Date, required: true },
-        plan: { type: String, required: true },
+        plan: { type: String, required: false },
       },
     ],
     totalMealsLeft: {
