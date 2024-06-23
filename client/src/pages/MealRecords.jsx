@@ -27,11 +27,11 @@ const MealRecords = () => {
   }, []);
 
   return (
-    <div className="grid md:grid-flow-col lg:grid-flow-col md:col-span-2 lg:col-span-2  ">
+    <div className="grid md:grid-flow-col lg:grid-flow-col md:col-span-2 lg:col-span-2 w-full ">
       <div className="">
         <Sidebar />
       </div>
-      <div className="container mx-auto p-4 pt-20">
+      <div className="container  pt-20 p-2 w-full">
         <h1 className="text-2xl font-bold mb-4">Meal Records</h1>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {subscriptions.map((sub) => (

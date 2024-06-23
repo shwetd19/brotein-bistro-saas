@@ -5,6 +5,7 @@ import Sidebar from "../components/Sidebar";
 function SubscriptionseRequests() {
   const [subscriptions, setSubscriptions] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     const fetchSubscriptions = async () => {
@@ -20,6 +21,16 @@ function SubscriptionseRequests() {
 
     fetchSubscriptions();
   }, []);
+
+  const handleSearchChange = (event) => {
+    setSearchQuery(event.target.value);
+  };
+
+  const filteredSubscriptions = subscriptions.filter(
+    (subscription) =>
+      subscription.username.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      subscription.phoneNumber.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   const handleApprove = async (id) => {
     try {
@@ -70,8 +81,20 @@ function SubscriptionseRequests() {
   return (
     <div className="grid md:grid-flow-col lg:grid-flow-col md:col-span-2 lg:col-span-2">
       <Sidebar />
-      <div className="pt-20 p-10 w-full">
-        <div className="rounded-xl border overflow-hidden">
+      <div className="pt-20 p-2 w-full">
+        <div className="rounded-xl border">
+          <div className="p-4 flex">
+            <div className="border shadow-md px-3 py-2 flex rounded-full w-min">
+              <input
+                type="text"
+                placeholder="Search by username or phone number"
+                value={searchQuery}
+                onChange={handleSearchChange}
+                className="rounded px-3 py-2"
+              />
+              <img src="/public/search.svg" className="w-10 pr-5" />
+            </div>
+          </div>
           <table className="w-full divide-y divide-gray-200">
             <thead className="bg-[#F6F6F6]">
               <tr>
@@ -99,7 +122,7 @@ function SubscriptionseRequests() {
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
-              {subscriptions.map((subscription) => (
+              {filteredSubscriptions.map((subscription) => (
                 <tr
                   key={subscription._id}
                   className="hover:bg-[#F6F6F6] transition duration-150 ease-in-out"

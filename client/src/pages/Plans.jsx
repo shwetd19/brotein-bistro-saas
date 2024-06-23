@@ -95,7 +95,7 @@ const Plans = () => {
                   {/* <CheckIcon className="w-4 h-4 text-green-500" />1 user */}
                   <div className="flex">
                     <img src="/tick.svg" alt="" className="w-6 mr-2" />
-                    <p className="">Protein: {plan.protein}</p>
+                    <p className="">Protein Source: {plan.protein}</p>
                   </div>
                 </li>
                 <li className="flex items-center gap-2">

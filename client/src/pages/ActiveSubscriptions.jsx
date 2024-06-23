@@ -5,6 +5,11 @@ import Sidebar from "../components/Sidebar";
 function ActiveSubscriptions() {
   const [activeSubscriptions, setActiveSubscriptions] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedDate, setSelectedDate] = useState(() => {
+    const today = new Date();
+    return today.toISOString().split("T")[0]; // Format date as YYYY-MM-DD
+  });
 
   useEffect(() => {
     const fetchActiveSubscriptions = async () => {
@@ -21,13 +26,48 @@ function ActiveSubscriptions() {
     fetchActiveSubscriptions();
   }, []);
 
+  const handleSearchChange = (event) => {
+    setSearchQuery(event.target.value);
+  };
+
+  const handleDateChange = (event) => {
+    setSelectedDate(event.target.value);
+  };
+
+  const filteredSubscriptions = activeSubscriptions.filter(
+    (subscription) =>
+      subscription.username.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      subscription.phoneNumber.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   if (isLoading) return <div>Loading...</div>;
 
   return (
     <div className="grid md:grid-flow-col lg:grid-flow-col md:col-span-2 lg:col-span-2">
       <Sidebar />
-      <div className="pt-20 p-10">
-        <div className="rounded-xl border overflow-hidden">
+      <div className="pt-20 p-2 w-full">
+        <div className="rounded-xl border">
+          <div className="p-4 flex">
+            <div className="border shadow-md px-3 py-2 flex rounded-full w-min">
+              <input
+                type="text"
+                placeholder="Search by username or phone number"
+                value={searchQuery}
+                onChange={handleSearchChange}
+                className=" rounded px-3 py-2"
+              />
+
+              <img src="/public/search.svg" className="w-10 pr-5" />
+            </div>
+            <div className="flex items-center justify-end">
+              <input
+                type="date"
+                value={selectedDate}
+                onChange={handleDateChange}
+                className="border rounded px-3 py-2 ml-2"
+              />
+            </div>
+          </div>
           <table className="w-full divide-y divide-gray-200">
             <thead className="bg-[#F6F6F6]">
               <tr>
@@ -52,23 +92,47 @@ function ActiveSubscriptions() {
                 <th className="px-4 py-2 text-sm font-semibold text-gray-700">
                   Days Left
                 </th>
+                <th className="px-4 py-2 text-sm font-semibold text-gray-700">
+                  Meals Left
+                </th>
+                <th className="px-4 py-2 text-sm font-semibold text-gray-700">
+                  Meal Taken
+                </th>
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
-              {activeSubscriptions.map((subscription) => (
+              {filteredSubscriptions.map((subscription) => (
                 <tr
                   key={subscription._id}
                   className="hover:bg-[#F6F6F6] transition duration-150 ease-in-out"
                 >
-                  <td className="px-4 py-2">{subscription.username}</td>
-                  <td className="px-4 py-2">{subscription.phoneNumber}</td>
-                  <td className="px-4 py-2">{subscription.address}</td>
-                  <td className="px-4 py-2">{subscription.selectedPlan}</td>
-                  <td className="px-4 py-2">
+                  <td className="px-4 py-2 text-center">
+                    {subscription.username}
+                  </td>
+                  <td className="px-4 py-2 text-center">
+                    {subscription.phoneNumber}
+                  </td>
+                  <td className="px-4 py-2 text-center">
+                    {subscription.address}
+                  </td>
+                  <td className="px-4 py-2 text-center">
+                    {subscription.selectedPlan}
+                  </td>
+                  <td className="px-4 py-2 text-center">
                     {new Date(subscription.startDate).toLocaleDateString()}
                   </td>
-                  <td className="px-4 py-2">{subscription.selectedBranch}</td>
-                  <td className="px-4 py-2">{subscription.DaysLeft}</td>
+                  <td className="px-4 py-2 text-center">
+                    {subscription.selectedBranch}
+                  </td>
+                  <td className="px-4 py-2 text-center">
+                    {subscription.DaysLeft}
+                  </td>
+                  <td className="px-4 py-2 text-center">28/30</td>
+                  <td className="px-4 py-2 text-center">
+                    <button className="button shadow-md text-center text-xs">
+                      Record Meal
+                    </button>
+                  </td>
                 </tr>
               ))}
             </tbody>

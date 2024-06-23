@@ -28,7 +28,7 @@ const Bmi = () => {
     <div className=" bg-[#F8F5F2] min-h-screen p-10 pt-20 ">
       <div className="grid md:grid-flow-col lg:grid-flow-col sm:grid-flow-row md:grid-cols-2 lg:grid-cols-2  gap-6">
         <div className=" sm:p-6 lg:px-20 md:px-14  ">
-          <h1 className="text-2xl font-bold mb-4">BMI Calculator</h1>
+          <h1 className="text-2xl font-bold mb-4">Enter Your Details</h1>
           <div className="mb-4">
             <label className="block mb-2">Gender</label>
             <div>
