@@ -10,17 +10,19 @@ const MealRecordDetails = () => {
   const [updateField, setUpdateField] = useState("");
   const [newValue, setNewValue] = useState("");
 
-  useEffect(() => {
-    const fetchDetailsAndMealRecords = async () => {
-      try {
-        const response = await axios.get(`/api/active/subs/${id}`);
-        setSubscriptionDetails(response.data);
-        setMeals(response.data.mealsTaken);
-      } catch (error) {
-        console.error("Error fetching details and meal records:", error);
-      }
-    };
+  // Define fetchDetailsAndMealRecords at the top level
+  const fetchDetailsAndMealRecords = async () => {
+    try {
+      const response = await axios.get(`/api/active/subs/${id}`);
+      setSubscriptionDetails(response.data);
+      setMeals(response.data.mealsTaken);
+    } catch (error) {
+      console.error("Error fetching details and meal records:", error);
+    }
+  };
 
+  useEffect(() => {
+    // Call fetchDetailsAndMealRecords when the component mounts or id changes
     fetchDetailsAndMealRecords();
   }, [id]);
 
@@ -36,13 +38,16 @@ const MealRecordDetails = () => {
     }
   };
 
-  const handleDelete = async () => {
+  const handleDeleteMeal = async (mealRecordId) => {
     try {
-      await axios.delete(`/api/active/subs/${id}`);
-      // Redirect or navigate away after deletion
-      window.location.href = "/"; // Adjust based on your routing setup
+      await axios.post("/api/active/subs/deleteMeal/", {
+        username: subscriptionDetails.username,
+        mealRecordId,
+      });
+      // Refresh the meal records after successful deletion
+      fetchDetailsAndMealRecords();
     } catch (error) {
-      console.error("Error deleting subscription:", error);
+      console.error("Error deleting meal record:", error);
     }
   };
 
@@ -78,7 +83,9 @@ const MealRecordDetails = () => {
             <button onClick={handleUpdate} className="ml-2">
               Update
             </button>
-            <button onClick={handleDelete}>Delete</button>
+            <button onClick={() => handleDeleteMeal(meal._id)}>
+              Delete Subscription
+            </button>
           </div>
           {/* Existing Table Display */}
           <div className="overflow-x-auto">
@@ -98,6 +105,12 @@ const MealRecordDetails = () => {
                     >
                       Selected Plan
                     </th>
+                    <th
+                      scope="col"
+                      className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider"
+                    >
+                      Actions
+                    </th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-200">
@@ -110,6 +123,14 @@ const MealRecordDetails = () => {
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm">
                         {meal.plan}
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm flex items-center space-x-2">
+                        <button
+                          onClick={() => handleDeleteMeal(meal._id)}
+                          className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded"
+                        >
+                          Delete
+                        </button>
                       </td>
                     </tr>
                   ))}

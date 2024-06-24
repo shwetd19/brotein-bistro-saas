@@ -310,3 +310,40 @@ export const adminRecordMeal = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+
+export const deleteMealRecord = async (req, res) => {
+  const { username, mealRecordId } = req.body;
+
+  try {
+    let subscription = await ActiveSubscription.findOne({ username });
+
+    if (!subscription) {
+      return res.status(404).json({ message: "Subscription not found" });
+    }
+
+    // Find the meal record to delete by its _id
+    const mealRecordToDelete = subscription.mealsTaken.id(mealRecordId);
+
+    if (!mealRecordToDelete) {
+      return res.status(404).json({ message: "Meal record not found" });
+    }
+
+    // Remove the meal record from the mealsTaken array
+    const mealIndex = subscription.mealsTaken.indexOf(mealRecordToDelete);
+    if (mealIndex !== -1) {
+      subscription.mealsTaken.splice(mealIndex, 1);
+    }
+
+    // Recalculate totalMealsLeft
+    const totalMealsOfThatPlan = getInitialMeals(subscription.selectedPlan);
+    const mealsTakenCount = subscription.mealsTaken.length;
+    subscription.totalMealsLeft = totalMealsOfThatPlan - mealsTakenCount;
+
+    await subscription.save();
+
+    res.status(200).json(subscription);
+  } catch (error) {
+    console.error("Error deleting meal record:", error);
+    res.status(500).json({ message: error.message });
+  }
+};

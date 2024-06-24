@@ -1,4 +1,7 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+// App.jsx
+import React from "react";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 import Home from "./pages/Home";
 import SubscriptionseRequests from "./pages/SubscriptionseRequests";
 import SignIn from "./pages/SignIn";
@@ -9,6 +12,7 @@ import Header from "./components/Header";
 import SubscriptionPage from "./pages/GetSubscription";
 import PrivateRoute from "./components/PrivateRoute";
 import AdminRoute from "./components/AdminRoute";
+import ActiveSubscriberRoute from "./components/ActiveSubscriberRoute";
 import FeedbackForm from "./pages/FeedbackForm";
 import MealRecords from "./pages/MealRecords";
 import MealRecordDetails from "./pages/MealRecordDetails";
@@ -22,6 +26,8 @@ import Add from "./pages/Add";
 import FeedbackResponses from "./pages/FeedbackResponses";
 
 export default function App() {
+  const { currentUser } = useSelector((state) => state.user);
+
   return (
     <BrowserRouter>
       <Header />
@@ -30,20 +36,17 @@ export default function App() {
         <Route path="/not-found" element={<NotFoundPage />} />
         <Route path="/sign-in" element={<SignIn />} />
         <Route path="/sign-up" element={<SignUp />} />
-        <Route path="/Questionnaire" element={<Questionnaire />} />
+        <Route path="/questionnaire" element={<Questionnaire />} />
         <Route path="/bmi" element={<Bmi />} />
         <Route path="/plans" element={<Plans />} />
-        <Route path="/sign-up" element={<SignUp />} />
+
         <Route element={<PrivateRoute />}>
           <Route path="/profile" element={<Profile />} />
           <Route path="/feedback-from" element={<FeedbackForm />} />
           <Route path="/subscription" element={<SubscriptionPage />} />
           <Route path="/user-profile/:id" element={<UserProfile />} />
-          <Route
-            path="/user-subscribed-plan/:id"
-            element={<SubscribedPlan />}
-          />
         </Route>
+
         <Route element={<AdminRoute />}>
           <Route
             path="/subscriptionse-requests"
@@ -55,10 +58,18 @@ export default function App() {
             element={<ActiveSubscriptions />}
           />
           <Route path="/upload-add" element={<Add />} />
-
           <Route path="/meal-records" element={<MealRecords />} />
           <Route path="/meal-records/:id" element={<MealRecordDetails />} />
         </Route>
+
+        <Route element={<ActiveSubscriberRoute />}>
+          <Route
+            path="/user-subscribed-plan/:id"
+            element={<SubscribedPlan />}
+          />
+        </Route>
+
+        <Route path="*" element={<Navigate to="/sign-in" />} />
       </Routes>
     </BrowserRouter>
   );

@@ -5,7 +5,6 @@ const initialState = {
   currentUser: null,
   loading: false,
   error: null,
-  activeSubscriptions: [], // Ensure activeSubscriptions is initialized
 };
 
 const userSlice = createSlice({
@@ -52,6 +51,9 @@ const userSlice = createSlice({
       state.currentUser = null;
       state.loading = false;
       state.error = null; // Clear error on sign-out
+    },
+    UPDATE_USER: (state, action) => {
+      state.currentUser = action.payload;
     },
   },
 });

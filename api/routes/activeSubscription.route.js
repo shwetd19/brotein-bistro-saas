@@ -10,6 +10,7 @@ import {
   getMealRecordsByUserId,
   getCountOfActiveSubscriptions,
   adminRecordMeal,
+  deleteMealRecord
 } from "../controllers/activeSubscription.controller.js";
 
 const router = express.Router();
@@ -28,7 +29,7 @@ router.patch("/:id", updateActiveSubscription);
 router.delete("/:id", deleteActiveSubscription);
 
 // Endpoint for recording meal consumption
-router.post("/recordMeal", recordMeal); // Endpoint for recording meal consumption
+router.post("/recordMeal", recordMeal);
 
 // Endpoint for fetching meal records by subscription ID
 router.get("/:id/meals", getMealRecordsBySubscriptionId);
@@ -41,5 +42,8 @@ router.get("/getAllActiveSubs/count", getCountOfActiveSubscriptions);
 
 // In activeSubscription.route.js
 router.post("/admin/recordMeal/:username", adminRecordMeal);
+
+// For deleting a meal record
+router.post("/deleteMeal/", deleteMealRecord); 
 
 export default router;
