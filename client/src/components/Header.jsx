@@ -1,24 +1,24 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 export default function Header() {
   const { currentUser } = useSelector((state) => state.user);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
-  const handleUserProfileClick = () => {
-    if (currentUser) {
-      navigate(`/user-profile/${currentUser._id}`);
-    }
-  };
+  // const handleUserProfileClick = () => {
+  //   if (currentUser) {
+  //     navigate(`/user-profile/${currentUser._id}`);
+  //   }
+  // };
 
-  const handleUserSubscribedPlanClick = () => {
-    if (currentUser) {
-      navigate(`/user-subscribed-plan/${currentUser._id}`);
-    }
-  };
+  // const handleUserSubscribedPlanClick = () => {
+  //   if (currentUser) {
+  //     navigate(`/user-subscribed-plan/${currentUser._id}`);
+  //   }
+  // };
 
   return (
-    <div className="w-screen max-h-20 backdrop-blur-md shadow-md fixed grid grid-flow-col z-20">
+    <div className="w-screen max-h-20  fixed grid grid-flow-col z-20">
       <div className="flex justify-start items-center">
         <Link to="/">
           <img src="/logo.png" alt="logo" className="h-14 max-h-16 m-1" />
@@ -64,12 +64,12 @@ export default function Header() {
             Get Your Meal
           </Link> */}
 
-          <button
+          {/* <button
             onClick={handleUserProfileClick}
             className="rounded-full font-semibold py-2 px-4 md:mr-5 lg:mr-5 sm:mr-1 border-black border shadow-md"
           >
             User Profile
-          </button>
+          </button> */}
           <Link
             className="rounded-full font-semibold py-2 px-4 md:mr-5 lg:mr-5 sm:mr-1 border-black border shadow-md"
             to="/profile"

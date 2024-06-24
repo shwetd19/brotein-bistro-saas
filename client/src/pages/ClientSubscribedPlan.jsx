@@ -56,13 +56,13 @@ const SubscribedPlan = () => {
   }
 
   return (
-    <div className="grid md:grid-flow-col lg:grid-flow-col md:col-span-2 lg:col-span-2">
+    <div className="grid md:grid-flow-col lg:grid-flow-col md:col-span-2 lg:col-span-2 bg-[#F6F6F6]">
       <SideBarClient />
       <div className="pt-20 p-2 w-full">
         <div className="grid md:grid-flow-col lg:grid-flow-col md:grid-cols-4 lg:grid-cols-4 gap-2">
           <div className="grid gap-2 w-full md:col-span-3 lg:col-span-3 bg-white p-2 rounded-2xl">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-2 w-full">
-              <div className=" p-2 rounded-xl w-full h-44   bg-[#EFFCEF] border ">
+              <div className=" p-2 rounded-xl w-full h-44   bg-[#EFFCEF] border shadow-sm ">
                 <img alt="meal" className="w-10" src="/taken.svg" />
                 <h1 className="text-xl text-center md:text-xl mb-2 capitalize">
                   Meals Left:
@@ -72,7 +72,7 @@ const SubscribedPlan = () => {
                   {subscriptionData.totalMealsOfThatPlan}
                 </h1>
               </div>
-              <div className="   p-2 rounded-xl w-full h-44  bg-[#F4F6FA] border ">
+              <div className="   p-2 rounded-xl w-full h-44  bg-[#F4F6FA] border shadow-sm">
                 <img alt="meal" className="w-10" src="/daysleft.svg" />{" "}
                 <h1 className="text-xl text-center md:text-xl mb-2  capitalize">
                   Days Left:
@@ -81,7 +81,7 @@ const SubscribedPlan = () => {
                   {subscriptionData.totalMealsLeft}
                 </h1>
               </div>
-              <div className="   p-2 rounded-xl w-full h-44  bg-[#FFEFE2] border ">
+              <div className="   p-2 rounded-xl w-full h-44  bg-[#FFEFE2] border shadow-sm">
                 <img alt="meal" className="w-10" src="/plans.svg" />{" "}
                 <div className="text-xl text-center md:text-xl mb-2 capitalize ">
                   Selected Plan:
@@ -93,7 +93,7 @@ const SubscribedPlan = () => {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-              <div className="   p-2 rounded-xl w-full h-44 bg-[#F6F6F6] border">
+              <div className="   p-2 rounded-xl w-full h-44 bg-[#F6F6F6] border shadow-sm">
                 <img alt="meal" className="w-10" src="/date.svg" />{" "}
                 <div className="text-xl text-center md:text-2xl mb-2 capitalize">
                   Start Date:
@@ -102,7 +102,7 @@ const SubscribedPlan = () => {
                   {new Date(subscriptionData.startDate).toLocaleDateString()}
                 </div>
               </div>
-              <div className="   p-2 rounded-xl w-full h-44 bg-[#F6F6F6] border">
+              <div className="   p-2 rounded-xl w-full h-44 bg-[#F6F6F6] border shadow-sm">
                 <img alt="meal" className="w-10" src="/branch.svg" />{" "}
                 <div>
                   <div className="text-xl text-center md:text-2xl mb-2 capitalize">
@@ -115,7 +115,7 @@ const SubscribedPlan = () => {
               </div>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-1 gap-2">
-              <div className="   p-2 rounded-xl w-full col-span-2 bg-[#F6F6F6] border">
+              <div className="   p-2 rounded-xl w-full col-span-2 bg-[#F6F6F6] border shadow-sm">
                 <img alt="meal" className="w-10" src="/meal.svg" />{" "}
                 <h1 className="text-xl text-center md:text-xl mb-2 capitalize">
                   Meals Taken

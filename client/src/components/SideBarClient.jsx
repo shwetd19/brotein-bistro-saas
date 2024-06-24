@@ -6,8 +6,8 @@ import { useEffect, useState } from "react";
 
 const SideBarClient = () => {
   const location = useLocation();
-  const [expanded, setExpanded] = useState(true);
-  const [showText, setShowText] = useState(true);
+  const [expanded, setExpanded] = useState(false);
+  const [showText, setShowText] = useState(false);
 
   const { currentUser } = useSelector((state) => state.user);
   const navigate = useNavigate();
@@ -35,10 +35,15 @@ const SideBarClient = () => {
       navigate(`/user-subscribed-plan/${currentUser._id}`);
     }
   };
+  const handleUserSubscribedPlanClickk = () => {
+    if (currentUser) {
+      navigate(`/user-profile/${currentUser._id}`);
+    }
+  };
 
   return (
     <nav
-      className={`md:h-screen lg:h-screen sm:h-min sm:w-full md:w-fit lg:w-fit transition-all duration-300 flex md:flex-col lg:flex-col sm:flex-row sticky  left-0 top-0 p-2  pt-24 rounded-sm shadow-md border ${
+      className={`md:h-screen lg:h-screen sm:h-min sm:w-full md:w-fit lg:w-fit transition-all duration-300 flex md:flex-col lg:flex-col sm:flex-row sticky  left-0 top-0 p-2  pt-24 rounded-sm shadow-sm border ${
         expanded ? "sm:w-full md:w-56 lg:w-52" : ""
       }`}
     >
@@ -58,7 +63,7 @@ const SideBarClient = () => {
               `/user-subscribed-plan/${currentUser._id}`
             )} flex `}
           >
-            <img alt="requests" className="w-6 mr-4" src="/request.svg" />
+            <img alt="requests" className="w-6 mr-4" src="/dash.svg" />
             {expanded && showText && <p className="duration-300">Dashboard</p>}
           </button>
         </li>
@@ -67,13 +72,13 @@ const SideBarClient = () => {
             to="/feedback-from"
             className={`${getLinkClasses("/feedback-from")} flex`}
           >
-            <img alt="requests" className="w-6 mr-4" src="/active.svg" />
+            <img alt="requests" className="w-6 mr-4" src="/feedback.svg" />
             {expanded && showText && <p>Feedback</p>}
           </Link>
         </li>
         <li>
           <Link to="/events" className={`${getLinkClasses("/events")} flex`}>
-            <img alt="requests" className="w-6 mr-4" src="/records.svg" />
+            <img alt="requests" className="w-6 mr-4" src="/events.svg" />
             {expanded && showText && <p>Events</p>}
           </Link>
         </li>
@@ -82,19 +87,24 @@ const SideBarClient = () => {
             to="/know-more"
             className={`${getLinkClasses("/know-more")} flex`}
           >
-            <img alt="requests" className="w-6 mr-4" src="/records.svg" />
+            <img alt="requests" className="w-6 mr-4" src="/knowmore.svg" />
             {expanded && showText && <p className="">Know More</p>}
           </Link>
         </li>
-        {/* <li>
-          <Link
-            to="/feedback-responses"
-            className={`${getLinkClasses("/feedback-responses")} flex`}
+        <li>
+          <button
+            // to="/feedback-responses"
+            onClick={handleUserSubscribedPlanClickk}
+            // className="flex"
+            className={`${getLinkClasses(
+              `/user-profile/${currentUser._id}`
+            )} flex `}
+            // className={`${getLinkClasses("/feedback-responses")} flex`}
           >
-            <img alt="requests" className="w-6 mr-4" src="active.svg" />
-            {expanded && showText && <p>feedback</p>}
-          </Link>
-        </li> */}
+            <img alt="requests" className="w-6 mr-4" src="/user.svg" />
+            {expanded && showText && <p>user details</p>}
+          </button>
+        </li>
       </ul>
     </nav>
   );

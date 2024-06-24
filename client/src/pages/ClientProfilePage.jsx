@@ -1,6 +1,7 @@
 // UserProfile.jsx
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import SideBarClient from "../components/SideBarClient";
 
 const UserProfile = () => {
   const { id } = useParams();
@@ -44,29 +45,32 @@ const UserProfile = () => {
   }
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-[#F8F5F2] bg-login">
-      <div className="text-center  glass shadow-lg p-6 rounded-2xl lg:w-1/3 md:w-1/3">
-        <h1 className="text-xl font-bold mb-4">User Profile</h1>
-        <table className="w-full text-left">
-          <tbody>
-            <tr>
-              <td className="font-semibold">ID:</td>
-              <td>{userData.userId}</td>
-            </tr>
-            <tr>
-              <td className="font-semibold">Username:</td>
-              <td>{userData.username}</td>
-            </tr>
-            <tr>
-              <td className="font-semibold">Phone Number:</td>
-              <td>{userData.phoneNumber}</td>
-            </tr>
-            <tr>
-              <td className="font-semibold">Address:</td>
-              <td>{userData.address}</td>
-            </tr>
-          </tbody>
-        </table>
+    <div className="grid md:grid-flow-col lg:grid-flow-col ">
+      <SideBarClient />
+      <div className="flex items-center justify-center min-h-screen pt-20 p-2 w-full col-span-12">
+        <div className="text-center  glass shadow-lg p-6 rounded-2xl  border overflow-hidden">
+          <h1 className="text-xl font-bold mb-4">User Profile</h1>
+          <table className="w-full text-left">
+            <tbody>
+              <tr>
+                <td className="font-semibold">ID:</td>
+                <td>{userData.userId}</td>
+              </tr>
+              <tr>
+                <td className="font-semibold">Username:</td>
+                <td>{userData.username}</td>
+              </tr>
+              <tr>
+                <td className="font-semibold">Phone Number:</td>
+                <td>{userData.phoneNumber}</td>
+              </tr>
+              <tr>
+                <td className="font-semibold">Address:</td>
+                <td>{userData.address}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );

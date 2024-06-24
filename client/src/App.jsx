@@ -1,5 +1,4 @@
 // App.jsx
-import React from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Home from "./pages/Home";
@@ -25,6 +24,8 @@ import NotFoundPage from "./pages/NotFoundPage";
 import Add from "./pages/Add";
 import FeedbackResponses from "./pages/FeedbackResponses";
 import Wait from "./pages/Wait";
+import Events from "./pages/Events";
+import KnowMore from "./pages/KnowMore";
 
 export default function App() {
   const { currentUser } = useSelector((state) => state.user);
@@ -45,6 +46,8 @@ export default function App() {
           <Route path="/wait" element={<Wait />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/feedback-from" element={<FeedbackForm />} />
+          <Route path="/events" element={<Events />} />
+          <Route path="/know-more" element={<KnowMore />} />
           <Route path="/subscription" element={<SubscriptionPage />} />
           <Route path="/user-profile/:id" element={<UserProfile />} />
         </Route>
