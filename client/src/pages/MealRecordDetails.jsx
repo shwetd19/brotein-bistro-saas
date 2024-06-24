@@ -7,10 +7,18 @@ const MealRecordDetails = () => {
   const { id } = useParams();
   const [subscriptionDetails, setSubscriptionDetails] = useState({});
   const [meals, setMeals] = useState([]);
-  const [updateField, setUpdateField] = useState("");
-  const [newValue, setNewValue] = useState("");
+  const [selectedPlan, setSelectedPlan] = useState("");
+  const [totalMealsLeft, setTotalMealsLeft] = useState("");
 
-  // Define fetchDetailsAndMealRecords at the top level
+  const plans = [
+    "Basic Mini Bowl",
+    "Platinum",
+    "Two Times Mini Bowl",
+    "Premium",
+    "150 Grams Protein Source",
+    "200 Grams Protein Source",
+  ];
+
   const fetchDetailsAndMealRecords = async () => {
     try {
       const response = await axios.get(`/api/active/subs/${id}`);
@@ -22,19 +30,17 @@ const MealRecordDetails = () => {
   };
 
   useEffect(() => {
-    // Call fetchDetailsAndMealRecords when the component mounts or id changes
     fetchDetailsAndMealRecords();
   }, [id]);
 
-  const handleUpdate = async () => {
+  const handleUpdate = async (field, value) => {
     try {
       await axios.patch(`/api/active/subs/${id}`, {
-        [updateField]: newValue,
+        [field]: value,
       });
-      // Refresh the subscription details after successful update
       fetchDetailsAndMealRecords();
     } catch (error) {
-      console.error("Error updating subscription details:", error);
+      console.error(`Error updating ${field}:`, error);
     }
   };
 
@@ -44,7 +50,6 @@ const MealRecordDetails = () => {
         username: subscriptionDetails.username,
         mealRecordId,
       });
-      // Refresh the meal records after successful deletion
       fetchDetailsAndMealRecords();
     } catch (error) {
       console.error("Error deleting meal record:", error);
@@ -68,27 +73,8 @@ const MealRecordDetails = () => {
             </p>
             <p>Days Left: {subscriptionDetails.DaysLeft}</p>
           </div>
-          {/* Interactive Update/Delete Section */}
-          <div className="flex justify-end mt-4">
-            <select
-              onChange={(e) => setUpdateField(e.target.value)}
-              className="mr-2"
-            >
-              <option value="">Select Field to Edit</option>
-              <option value="selectedPlan">Selected Plan</option>
-              <option value="totalMealsLeft">Total Meals Left</option>
-              {/* Add more options as needed */}
-            </select>
-            <input type="text" onChange={(e) => setNewValue(e.target.value)} />
-            <button onClick={handleUpdate} className="ml-2">
-              Update
-            </button>
-            <button onClick={() => handleDeleteMeal(meal._id)}>
-              Delete Subscription
-            </button>
-          </div>
-          {/* Existing Table Display */}
-          <div className="overflow-x-auto">
+
+          <div className="overflow-x-auto mt-4">
             <div className="rounded-xl border overflow-hidden">
               <table className="min-w-full divide-y divide-gray-200">
                 <thead className="bg-[#F6F6F6]">
@@ -137,6 +123,44 @@ const MealRecordDetails = () => {
                 </tbody>
               </table>
             </div>
+          </div>
+          <div className="flex flex-col justify-center items-center space-y-4 mt-4 p-3 rounded-xl border overflow-hidden">
+            <div className="flex items-center space-x-2">
+              <select
+                value={selectedPlan}
+                onChange={(e) => setSelectedPlan(e.target.value)}
+                className="input"
+              >
+                <option value="">Select Plan</option>
+                {plans.map((plan) => (
+                  <option key={plan} value={plan}>
+                    {plan}
+                  </option>
+                ))}
+              </select>
+              <button
+                onClick={() => handleUpdate("selectedPlan", selectedPlan)}
+                className="button"
+              >
+                Update Plan
+              </button>
+            </div>
+            <div className="flex items-center space-x-2 ">
+              <input
+                type="text"
+                placeholder="Update Meals Left"
+                value={totalMealsLeft}
+                onChange={(e) => setTotalMealsLeft(e.target.value)}
+                className="input "
+              />
+              <button
+                onClick={() => handleUpdate("totalMealsLeft", totalMealsLeft)}
+                className="button"
+              >
+                Update Meals Left
+              </button>
+            </div>
+            {/* Add more input fields and buttons as needed */}
           </div>
         </div>
       </div>

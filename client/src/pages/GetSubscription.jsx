@@ -46,7 +46,8 @@ const SubscriptionPage = () => {
       const data = await response.json();
       setLoading(false);
       if (response.ok) {
-        navigate(`/user-subscribed-plan/${currentUser._id}`);
+        // navigate(`/user-subscribed-plan/${currentUser._id}`);
+        navigate(`/wait`);
       } else {
         throw new Error("Failed to create subscription");
       }
@@ -61,7 +62,7 @@ const SubscriptionPage = () => {
     <div className="pt-20 flex items-center justify-center bg-login h-screen">
       <form
         onSubmit={handleSubmit}
-        className="w-4/5 max-w-md p-6 border border-gray-300 rounded-lg glass shadow-sm"
+        className="w-4/5 max-w-md border-gray-300  border p-5 rounded-xl backdrop-blur-2xl shadow-sm"
       >
         <div className="mb-2">
           <label

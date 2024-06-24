@@ -24,6 +24,7 @@ import Questionnaire from "./pages/Questionnaire";
 import NotFoundPage from "./pages/NotFoundPage";
 import Add from "./pages/Add";
 import FeedbackResponses from "./pages/FeedbackResponses";
+import Wait from "./pages/Wait";
 
 export default function App() {
   const { currentUser } = useSelector((state) => state.user);
@@ -41,6 +42,7 @@ export default function App() {
         <Route path="/plans" element={<Plans />} />
 
         <Route element={<PrivateRoute />}>
+          <Route path="/wait" element={<Wait />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/feedback-from" element={<FeedbackForm />} />
           <Route path="/subscription" element={<SubscriptionPage />} />

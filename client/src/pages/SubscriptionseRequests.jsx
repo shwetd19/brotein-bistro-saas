@@ -95,7 +95,7 @@ function SubscriptionseRequests() {
               <img src="search.svg" className="w-10 pr-5" />
             </div>
           </div>
-          <table className="w-full divide-y divide-gray-200">
+          <table className="w-full divide-y divide-gray-200 text-center">
             <thead className="bg-[#F6F6F6]">
               <tr>
                 <th className="px-4 py-2 text-sm font-semibold text-gray-700">

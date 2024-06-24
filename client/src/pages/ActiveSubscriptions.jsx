@@ -86,7 +86,7 @@ function ActiveSubscriptions() {
               />
             </div>
           </div>
-          <table className="w-full divide-y divide-gray-200">
+          <table className="w-full divide-y divide-gray-200 text-center">
             <thead className="bg-[#F6F6F6]">
               <tr>
                 <th className="px-4 py-2 text-sm font-semibold text-gray-700">
@@ -141,7 +141,7 @@ function ActiveSubscriptions() {
                     {subscription.selectedBranch}
                   </td>
                   <td className="px-4 py-2 text-center">
-                    {subscription.DaysLeft}
+                    {subscription.DaysLeft}/50
                   </td>
                   {/* <td className="px-4 py-2 text-center">
                     {subscription.MealsLeft}

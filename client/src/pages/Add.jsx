@@ -114,43 +114,82 @@ const Add = () => {
   };
 
   return (
-    <div className="grid md:grid-flow-col lg:grid-flow-col md:col-span-2 lg:col-span-2">
+    <div className="grid md:grid-flow-col lg:grid-flow-col md:col-span-2 lg:col-span-2 border rounded-xl backdrop-blur-2xl">
       <SideBarAdmin />
       <div className="pt-20 p-2 w-full">
-        <div className="p-6 rounded-xl border shadow-md w-full max-w-md">
-          <h2 className="text-2xl font-bold mb-4">Upload Your Ads Here</h2>
-          <input
-            type="file"
-            accept="image/*"
-            onChange={handleImageChange}
-            className="mb-4"
-          />
-          {preview && (
-            <img
-              src={preview}
-              alt="Preview"
-              className="w-full h-auto mb-4 rounded"
+        <div className="flex">
+          <div className="p-6 rounded-xl border shadow-md w-full max-w-md m-2">
+            <h2 className="text-2xl font-bold mb-4">Upload Your Ads Here</h2>
+            <input
+              type="file"
+              accept="image/*"
+              onChange={handleImageChange}
+              className="mb-4"
             />
-          )}
-          {image && (
-            <div>
-              <p className="text-sm text-gray-500">
-                Selected file: {image.name}
-              </p>
-            </div>
-          )}
-          <textarea
-            value={addText}
-            onChange={(e) => setAddText(e.target.value)}
-            placeholder="Add Text"
-            className="mb-4"
-          />
-          <button onClick={handleImageUpload} disabled={isLoading}>
-            {isLoading ? "Uploading..." : "Upload Ad"}
-          </button>
-          {isSuccess && <p className="text-green-600 mt-2">Add Uploaded!</p>}
+            {preview && (
+              <img
+                src={preview}
+                alt="Preview"
+                className="w-full h-auto mb-4 rounded"
+              />
+            )}
+            {image && (
+              <div>
+                <p className="text-sm text-gray-500">
+                  Selected file: {image.name}
+                </p>
+              </div>
+            )}
+            <button
+              className="button"
+              onClick={handleImageUpload}
+              disabled={isLoading}
+            >
+              {isLoading ? "Uploading..." : "Upload Ad"}
+            </button>
+            {isSuccess && <p className="text-green-600 mt-2">Add Uploaded!</p>}
+          </div>
+          <div className="p-6 rounded-xl border shadow-md w-full max-w-md m-2">
+            <h2 className="text-2xl font-bold mb-4">
+              Upload Your Event Poster Here
+            </h2>
+            <input
+              type="file"
+              accept="image/*"
+              onChange={handleImageChange}
+              className="mb-4"
+            />
+            {preview && (
+              <img
+                src={preview}
+                alt="Preview"
+                className="w-full h-auto mb-4 rounded"
+              />
+            )}
+            {image && (
+              <div>
+                <p className="text-sm text-gray-500">
+                  Selected file: {image.name}
+                </p>
+              </div>
+            )}
+            <textarea
+              value={addText}
+              onChange={(e) => setAddText(e.target.value)}
+              placeholder="Add Text about event"
+              className="my-4 border rounded-md"
+            />
+            <button
+              className="button m-2"
+              onClick={handleImageUpload}
+              disabled={isLoading}
+            >
+              {isLoading ? "Uploading..." : "Upload Ad"}
+            </button>
+            {isSuccess && <p className="text-green-600 mt-2">Add Uploaded!</p>}
+          </div>
         </div>
-        <div className="mt-8">
+        <div className="mt-8 m-2">
           <h3 className="text-lg font-semibold mb-4">
             Previously Uploaded Ads
           </h3>
@@ -163,10 +202,7 @@ const Add = () => {
                   className="w-full h-auto mb-4 rounded"
                 />
                 <p>{ad.addText}</p>
-                <button
-                  className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
-                  onClick={() => handleDelete(ad._id)}
-                >
+                <button className="button" onClick={() => handleDelete(ad._id)}>
                   Delete
                 </button>
               </li>

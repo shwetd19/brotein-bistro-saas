@@ -38,7 +38,7 @@ export default function SignUp() {
   };
   return (
     <div className="flex items-center justify-center min-h-screen bg-login bg-[#f8f5f2] ">
-      <div className="text-center glass shadow-lg p-6 rounded-xl lg:w-1/3 md:w-1/3">
+      <div className="text-center border p-5 rounded-xl backdrop-blur-2xl shadow-lg lg:w-1/3 md:w-1/3">
         <h1 className="text-3xl font-bold mb-4">Sign Up</h1>
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
           <input

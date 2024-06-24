@@ -91,7 +91,7 @@ const Bmi = () => {
           {bmi && (
             <div className="">
               <h2 className="text-xl ">Your results:</h2>
-              <p className="bg-bmi p-32 text-center text-2xl font-bold">
+              <p className="bg-bmi p-36 text-center text-2xl font-bold">
                 BMI: {bmi}
               </p>
               <div className="grid grid-flow-col col-span-2  ">
