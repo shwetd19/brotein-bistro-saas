@@ -13,6 +13,11 @@
   font-weight: 400;
 }
 
+.padding {
+  padding: 2.5rem;
+  padding-top: 5rem;
+}
+
 .button {
   /* width: 100%; */
   padding: 0.5rem 1rem;

@@ -92,7 +92,7 @@ function SubscriptionseRequests() {
                 onChange={handleSearchChange}
                 className="rounded px-3 py-2"
               />
-              <img src="/public/search.svg" className="w-10 pr-5" />
+              <img src="search.svg" className="w-10 pr-5" />
             </div>
           </div>
           <table className="w-full divide-y divide-gray-200">
@@ -135,10 +135,10 @@ function SubscriptionseRequests() {
                     {new Date(subscription.startDate).toLocaleDateString()}
                   </td>
                   <td className="px-4 py-2">{subscription.selectedBranch}</td>
-                  <td className="px-4 py-2">
+                  <td className="px-4 py-2 ">
                     <button
                       onClick={() => handleApprove(subscription._id)}
-                      className="border bg-black text-white font-semibold py-2 px-1 rounded mr-3 m-2 w-full mb-1 flex shadow-inner"
+                      className="border bg-black text-white font-semibold py-2 px-1 rounded mr-3 m-2 w-full mb-1 flex justify-center items-center shadow-inner"
                     >
                       <img
                         src="/approve.svg"
@@ -149,7 +149,7 @@ function SubscriptionseRequests() {
                     </button>
                     <button
                       onClick={() => handleDecline(subscription._id)}
-                      className="border bg-[#DE443B] text-white font-semibold py-2 px-1 rounded mr-2 m-2 w-full mb-1 flex shadow-inner"
+                      className="border bg-[#DE443B] text-white font-semibold py-2 px-1 rounded mr-2 m-2 w-full mb-1 flex justify-center items-center shadow-inner"
                     >
                       <img
                         src="/decline.svg"

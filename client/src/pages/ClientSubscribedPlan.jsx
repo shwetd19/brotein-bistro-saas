@@ -55,7 +55,7 @@ const SubscribedPlan = () => {
   }
 
   return (
-    <div className=" min-h-screen w-full p-10 pt-20 bg-[#F6F6F6]">
+    <div className=" min-h-screen w-full padding bg-[#F6F6F6]">
       {/* <div>
         <Link
           to="/get-your-meal"

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useSelector } from "react-redux"; // Import useSelector
 import axios from "axios"; // Use axios for HTTP requests
 
@@ -46,7 +46,7 @@ const FeedbackForm = () => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="space-y-6 p-6 bg-white shadow-md rounded-lg mx-auto w-custom"
+      className="space-y-6 padding bg-white shadow-md rounded-lg mx-auto w-custom"
     >
       <div>
         <label
