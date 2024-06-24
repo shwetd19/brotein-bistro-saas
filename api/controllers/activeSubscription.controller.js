@@ -202,7 +202,6 @@ export const recordMeal = async (req, res) => {
   }
 };
 
-
 // Fetch meal records for a specific subscription
 export const getMealRecordsBySubscriptionId = async (req, res) => {
   const { id } = req.params;
@@ -267,8 +266,6 @@ export const getMealRecordsByUserId = async (req, res) => {
   }
 };
 
-
-
 // Function to get count of all active subscriptions
 export const getCountOfActiveSubscriptions = async (req, res) => {
   try {
@@ -276,6 +273,40 @@ export const getCountOfActiveSubscriptions = async (req, res) => {
     res.status(200).json(count);
   } catch (error) {
     console.error("Error getting count of active subscriptions:", error);
+    res.status(500).json({ message: error.message });
+  }
+};
+
+// In activeSubscription.controller.js
+
+// Admin record meal function
+export const adminRecordMeal = async (req, res) => {
+  const { username, selectedPlan, date } = req.body;
+
+  try {
+    let subscription = await ActiveSubscription.findOne({ username });
+
+    if (!subscription) {
+      return res.status(404).json({ message: "Subscription not found" });
+    }
+
+    if (subscription.totalMealsLeft <= 0) {
+      return res.status(400).json({ message: "No meals left" });
+    }
+
+    // Update mealsTaken array
+    subscription.mealsTaken.push({ date, plan: selectedPlan });
+
+    // Update totalMealsLeft based on the difference
+    const totalMealsOfThatPlan = getInitialMeals(subscription.selectedPlan);
+    const mealsTakenCount = subscription.mealsTaken.length;
+    subscription.totalMealsLeft = totalMealsOfThatPlan - mealsTakenCount;
+
+    await subscription.save();
+
+    res.status(200).json(subscription);
+  } catch (error) {
+    console.error("Error recording meal:", error);
     res.status(500).json({ message: error.message });
   }
 };

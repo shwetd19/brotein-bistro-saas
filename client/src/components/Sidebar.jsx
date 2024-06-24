@@ -5,8 +5,8 @@ import { useEffect, useState } from "react";
 
 const Sidebar = () => {
   const location = useLocation();
-  const [expanded, setExpanded] = useState(true);
-  const [showText, setShowText] = useState(true);
+  const [expanded, setExpanded] = useState(false);
+  const [showText, setShowText] = useState(false);
 
   useEffect(() => {
     if (expanded) {
@@ -27,10 +27,10 @@ const Sidebar = () => {
   };
 
   return (
-    <div className="sm:w-full md:h-screen lg:h-screen sm:h-full rounded-sm   left-0 top-0 pt-24 shadow-md border ms:sticky lg:sticky  duration-300">
+    <div className="sm:w-full md:h-screen lg:h-screen sm:h-full rounded-sm  w-20 left-0 top-0 pt-24 shadow-md border ms:sticky lg:sticky  duration-300">
       <nav
         className={`transition-all duration-0 flex flex-col h-full p-2 ${
-          expanded ? "w-full" : "w-20"
+          expanded ? "w-20" : "w-20"
         }`}
       >
         <div
@@ -65,6 +65,22 @@ const Sidebar = () => {
             >
               <img alt="requests" className="w-6 mr-5" src="records.svg" />
               {expanded && showText && <p>Records</p>}
+            </Link>
+            <Link
+              to="/upload-add"
+              className={`${getLinkClasses("/upload-add")} flex`}
+            >
+              <img alt="requests" className="w-6 mr-5" src="records.svg" />
+              {expanded && showText && <p>Upload Add</p>}
+            </Link>
+          </li>
+          <li>
+            <Link
+              to="/feedback-responses"
+              className={`${getLinkClasses("/feedback-responses")} flex`}
+            >
+              <img alt="requests" className="w-6 mr-5" src="active.svg" />
+              {expanded && showText && <p>Active</p>}
             </Link>
           </li>
         </ul>

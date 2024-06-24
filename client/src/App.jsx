@@ -9,7 +9,7 @@ import Header from "./components/Header";
 import SubscriptionPage from "./pages/GetSubscription";
 import PrivateRoute from "./components/PrivateRoute";
 import AdminRoute from "./components/AdminRoute";
-import GetYourMeal from "./pages/GetMeal";
+import FeedbackForm from "./pages/FeedbackForm";
 import MealRecords from "./pages/MealRecords";
 import MealRecordDetails from "./pages/MealRecordDetails";
 import UserProfile from "./pages/ClientProfilePage";
@@ -18,6 +18,8 @@ import Plans from "./pages/Plans";
 import Bmi from "./pages/Bmi";
 import Questionnaire from "./pages/Questionnaire";
 import NotFoundPage from "./pages/NotFoundPage";
+import Add from "./pages/Add";
+import FeedbackResponses from "./pages/FeedbackResponses";
 
 export default function App() {
   return (
@@ -34,7 +36,7 @@ export default function App() {
         <Route path="/sign-up" element={<SignUp />} />
         <Route element={<PrivateRoute />}>
           <Route path="/profile" element={<Profile />} />
-          <Route path="/get-your-meal" element={<GetYourMeal />} />
+          <Route path="/feedback-from" element={<FeedbackForm />} />
           <Route path="/subscription" element={<SubscriptionPage />} />
           <Route path="/user-profile/:id" element={<UserProfile />} />
           <Route
@@ -47,10 +49,13 @@ export default function App() {
             path="/subscriptionse-requests"
             element={<SubscriptionseRequests />}
           />
+          <Route path="/feedback-responses" element={<FeedbackResponses />} />
           <Route
             path="/active-subscriptions"
             element={<ActiveSubscriptions />}
           />
+          <Route path="/upload-add" element={<Add />} />
+
           <Route path="/meal-records" element={<MealRecords />} />
           <Route path="/meal-records/:id" element={<MealRecordDetails />} />
         </Route>

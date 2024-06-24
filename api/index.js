@@ -6,6 +6,7 @@ import userRoutes from "./routes/user.route.js";
 import authRoutes from "./routes/auth.route.js";
 import subscriptionRoutes from "./routes/subscriptions.route.js";
 import ActiveSubscriptionRoutes from "./routes/activeSubscription.route.js";
+import feedbackRoutes from "./routes/feedback.route.js";
 
 import cookieParser from "cookie-parser";
 import path from "path";
@@ -36,6 +37,7 @@ app.use("/api/user", userRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/subs", subscriptionRoutes);
 app.use("/api/active/subs", ActiveSubscriptionRoutes);
+app.use("/api/feedback", feedbackRoutes);
 
 app.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500;

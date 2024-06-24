@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 
@@ -6,6 +6,8 @@ const MealRecordDetails = () => {
   const { id } = useParams();
   const [subscriptionDetails, setSubscriptionDetails] = useState({});
   const [meals, setMeals] = useState([]);
+  const [updateField, setUpdateField] = useState("");
+  const [newValue, setNewValue] = useState("");
 
   useEffect(() => {
     const fetchDetailsAndMealRecords = async () => {
@@ -21,6 +23,28 @@ const MealRecordDetails = () => {
     fetchDetailsAndMealRecords();
   }, [id]);
 
+  const handleUpdate = async () => {
+    try {
+      await axios.patch(`/api/active/subs/${id}`, {
+        [updateField]: newValue,
+      });
+      // Refresh the subscription details after successful update
+      fetchDetailsAndMealRecords();
+    } catch (error) {
+      console.error("Error updating subscription details:", error);
+    }
+  };
+
+  const handleDelete = async () => {
+    try {
+      await axios.delete(`/api/active/subs/${id}`);
+      // Redirect or navigate away after deletion
+      window.location.href = "/"; // Adjust based on your routing setup
+    } catch (error) {
+      console.error("Error deleting subscription:", error);
+    }
+  };
+
   return (
     <div className="container mx-auto p-4 pt-20">
       <h1 className="text-2xl font-bold mb-4">Meal Records</h1>
@@ -35,6 +59,24 @@ const MealRecordDetails = () => {
         </p>
         <p>Days Left: {subscriptionDetails.DaysLeft}</p>
       </div>
+      {/* Interactive Update/Delete Section */}
+      <div className="flex justify-end mt-4">
+        <select
+          onChange={(e) => setUpdateField(e.target.value)}
+          className="mr-2"
+        >
+          <option value="">Select Field to Edit</option>
+          <option value="selectedPlan">Selected Plan</option>
+          <option value="totalMealsLeft">Total Meals Left</option>
+          {/* Add more options as needed */}
+        </select>
+        <input type="text" onChange={(e) => setNewValue(e.target.value)} />
+        <button onClick={handleUpdate} className="ml-2">
+          Update
+        </button>
+        <button onClick={handleDelete}>Delete</button>
+      </div>
+      {/* Existing Table Display */}
       <div className="overflow-x-auto">
         <div className="rounded-xl border overflow-hidden">
           <table className="min-w-full divide-y divide-gray-200">
@@ -42,25 +84,27 @@ const MealRecordDetails = () => {
               <tr>
                 <th
                   scope="col"
-                  className="px-6 py-3 text-left text-xs font-medium  uppercase tracking-wider"
+                  className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider"
                 >
                   Date
                 </th>
                 <th
                   scope="col"
-                  className="px-6 py-3 text-left text-xs font-medium  uppercase tracking-wider"
+                  className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider"
                 >
                   Selected Plan
                 </th>
               </tr>
             </thead>
-            <tbody className=" divide-y divide-gray-200">
+            <tbody className="divide-y divide-gray-200">
               {meals.map((meal, index) => (
                 <tr key={index}>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm ">
-                    {meal.date}
+                  <td className="px-6 py-4 whitespace-nowrap text-sm">
+                    {new Intl.DateTimeFormat("en-GB").format(
+                      new Date(meal.date)
+                    )}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm ">
+                  <td className="px-6 py-4 whitespace-nowrap text-sm">
                     {meal.plan}
                   </td>
                 </tr>

@@ -23,19 +23,31 @@ export const isAdmin = (req, res, next) => {
   }
 };
 
-export const isActiveSubscriber = async (req, res, next) => {
-  const userId = req.user._id; // Assuming req.user is set by verifyToken and contains the user's ID
+// export const isActiveSubscriber = async (req, res, next) => {
+//   const userId = req.user._id; // Assuming req.user is set by verifyToken and contains the user's ID
 
+//   try {
+//     const activeSubscription = await ActiveSubscription.findOne({ userId });
+
+//     if (!activeSubscription) {
+//       return next(errorHandler(403, "You are not an active subscriber!"));
+//     }
+
+//     next();
+//   } catch (error) {
+//     console.error("Error checking active subscriber status:", error);
+//     next(errorHandler(500, "Internal server error"));
+//   }
+// };
+
+// Function to check if a user has an active subscription
+export const isActiveSubscriber = async (userId) => {
   try {
-    const activeSubscription = await ActiveSubscription.findOne({ userId });
-
-    if (!activeSubscription) {
-      return next(errorHandler(403, "You are not an active subscriber!"));
-    }
-
-    next();
+    const objectId = mongoose.Types.ObjectId(userId);
+    const subscription = await ActiveSubscription.findOne({ userId: objectId });
+    return !!subscription;
   } catch (error) {
-    console.error("Error checking active subscriber status:", error);
-    next(errorHandler(500, "Internal server error"));
+    console.error("Error checking if user is an active subscriber:", error);
+    throw error;
   }
 };

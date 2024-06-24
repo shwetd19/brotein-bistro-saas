@@ -9,6 +9,7 @@ import {
   getMealRecordsBySubscriptionId,
   getMealRecordsByUserId,
   getCountOfActiveSubscriptions,
+  adminRecordMeal,
 } from "../controllers/activeSubscription.controller.js";
 
 const router = express.Router();
@@ -37,4 +38,8 @@ router.get("/users/:userId/meals", getMealRecordsByUserId);
 
 // New route for getting count of all active subscriptions
 router.get("/getAllActiveSubs/count", getCountOfActiveSubscriptions);
+
+// In activeSubscription.route.js
+router.post("/admin/recordMeal/:username", adminRecordMeal);
+
 export default router;

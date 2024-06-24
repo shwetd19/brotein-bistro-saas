@@ -42,6 +42,24 @@ function ActiveSubscriptions() {
 
   if (isLoading) return <div>Loading...</div>;
 
+  const handleAdminRecordMeal = async (subscription) => {
+    try {
+      const response = await axios.post(
+        `/api/active/subs/admin/recordMeal/${subscription.username}`,
+        {
+          username: subscription.username,
+          selectedPlan: subscription.selectedPlan,
+          date: selectedDate,
+          userId: subscription.userId, // Assuming `userId` is available in the subscription object
+        }
+      );
+      alert("Meal recorded successfully");
+    } catch (error) {
+      console.error("Error recording meal:", error);
+      alert("Failed to record meal");
+    }
+  };
+
   return (
     <div className="grid md:grid-flow-col lg:grid-flow-col md:col-span-2 lg:col-span-2">
       <Sidebar />
@@ -80,9 +98,7 @@ function ActiveSubscriptions() {
                 <th className="px-4 py-2 text-sm font-semibold text-gray-700">
                   Address
                 </th>
-                <th className="px-4 py-2 text-sm font-semibold text-gray-700">
-                  Plan
-                </th>
+                <th className="px-4 py-2 text-semibold text-gray-700">Plan</th>
                 <th className="px-4 py-2 text-sm font-semibold text-gray-700">
                   Starting Date
                 </th>
@@ -92,11 +108,11 @@ function ActiveSubscriptions() {
                 <th className="px-4 py-2 text-sm font-semibold text-gray-700">
                   Days Left
                 </th>
-                <th className="px-4 py-2 text-sm font-semibold text-gray-700">
+                {/* <th className="px-4 py-2 text-sm font-semibold text-gray-700">
                   Meals Left
-                </th>
+                </th> */}
                 <th className="px-4 py-2 text-sm font-semibold text-gray-700">
-                  Meal Taken
+                  Action
                 </th>
               </tr>
             </thead>
@@ -127,9 +143,14 @@ function ActiveSubscriptions() {
                   <td className="px-4 py-2 text-center">
                     {subscription.DaysLeft}
                   </td>
-                  <td className="px-4 py-2 text-center">28/30</td>
+                  {/* <td className="px-4 py-2 text-center">
+                    {subscription.MealsLeft}
+                  </td> */}
                   <td className="px-4 py-2 text-center">
-                    <button className="button shadow-md text-center text-xs">
+                    <button
+                      onClick={() => handleAdminRecordMeal(subscription)}
+                      className="button shadow-md text-center text-xs"
+                    >
                       Record Meal
                     </button>
                   </td>
