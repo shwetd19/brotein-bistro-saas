@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Sidebar from "../components/SideBarAdmin";
+import SideBarAdmin from "../components/SideBarAdmin";
 const Add = () => {
   const [image, setImage] = useState(null);
   const [preview, setPreview] = useState(null);
@@ -21,7 +21,7 @@ const Add = () => {
 
   return (
     <div className="grid md:grid-flow-col lg:grid-flow-col md:col-span-2 lg:col-span-2">
-      <Sidebar />
+      <SideBarAdmin />
       <div className="pt-20 p-2 w-full">
         <div className="p-6 rounded-xl border shadow-md w-full max-w-md">
           <h2 className="text-2xl font-bold mb-4">Upload Your Ads Here</h2>

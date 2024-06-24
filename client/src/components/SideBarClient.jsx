@@ -1,12 +1,16 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { BsLayoutSidebarInset } from "react-icons/bs";
+import { useSelector } from "react-redux";
 
 import { useEffect, useState } from "react";
 
-const Sidebar = () => {
+const SideBarClient = () => {
   const location = useLocation();
   const [expanded, setExpanded] = useState(true);
   const [showText, setShowText] = useState(true);
+
+  const { currentUser } = useSelector((state) => state.user);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (expanded) {
@@ -26,6 +30,12 @@ const Sidebar = () => {
       : "text-lg p-2 m-1";
   };
 
+  const handleUserSubscribedPlanClick = () => {
+    if (currentUser) {
+      navigate(`/user-subscribed-plan/${currentUser._id}`);
+    }
+  };
+
   return (
     <nav
       className={`md:h-screen lg:h-screen sm:h-min sm:w-full md:w-fit lg:w-fit transition-all duration-300 flex md:flex-col lg:flex-col sm:flex-row sticky  left-0 top-0 p-2  pt-24 rounded-sm shadow-md border ${
@@ -40,42 +50,43 @@ const Sidebar = () => {
       </div>
       <ul className="flex md:flex-col lg:flex-col sm:flex-row w-full ">
         <li>
-          <Link
-            to="/subscriptionse-requests"
-            className={`${getLinkClasses("/subscriptionse-requests")} flex `}
+          <button
+            // to="/subscriptionse-requests"
+            onClick={handleUserSubscribedPlanClick}
+            // className="flex"
+            className={`${getLinkClasses(
+              `/user-subscribed-plan/${currentUser._id}`
+            )} flex `}
           >
-            <img alt="requests" className="w-6 mr-4" src="request.svg" />
-            {expanded && showText && <p className="duration-300">Requests</p>}
+            <img alt="requests" className="w-6 mr-4" src="/request.svg" />
+            {expanded && showText && <p className="duration-300">Dashboard</p>}
+          </button>
+        </li>
+        <li>
+          <Link
+            to="/feedback-from"
+            className={`${getLinkClasses("/feedback-from")} flex`}
+          >
+            <img alt="requests" className="w-6 mr-4" src="/active.svg" />
+            {expanded && showText && <p>Feedback</p>}
+          </Link>
+        </li>
+        <li>
+          <Link to="/events" className={`${getLinkClasses("/events")} flex`}>
+            <img alt="requests" className="w-6 mr-4" src="/records.svg" />
+            {expanded && showText && <p>Events</p>}
           </Link>
         </li>
         <li>
           <Link
-            to="/active-subscriptions"
-            className={`${getLinkClasses("/active-subscriptions")} flex`}
+            to="/know-more"
+            className={`${getLinkClasses("/know-more")} flex`}
           >
-            <img alt="requests" className="w-6 mr-4" src="active.svg" />
-            {expanded && showText && <p>Active</p>}
+            <img alt="requests" className="w-6 mr-4" src="/records.svg" />
+            {expanded && showText && <p className="">Know More</p>}
           </Link>
         </li>
-        <li>
-          <Link
-            to="/meal-records"
-            className={`${getLinkClasses("/meal-records")} flex`}
-          >
-            <img alt="requests" className="w-6 mr-4" src="records.svg" />
-            {expanded && showText && <p>Records</p>}
-          </Link>
-        </li>
-        <li>
-          <Link
-            to="/upload-add"
-            className={`${getLinkClasses("/upload-add")} flex`}
-          >
-            <img alt="requests" className="w-6 mr-4" src="records.svg" />
-            {expanded && showText && <p className="">Upload Add</p>}
-          </Link>
-        </li>
-        <li>
+        {/* <li>
           <Link
             to="/feedback-responses"
             className={`${getLinkClasses("/feedback-responses")} flex`}
@@ -83,10 +94,10 @@ const Sidebar = () => {
             <img alt="requests" className="w-6 mr-4" src="active.svg" />
             {expanded && showText && <p>feedback</p>}
           </Link>
-        </li>
+        </li> */}
       </ul>
     </nav>
   );
 };
 
-export default Sidebar;
+export default SideBarClient;

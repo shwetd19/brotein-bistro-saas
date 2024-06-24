@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom"; // Import Link
-import Sidebar from "../components/SideBarAdmin";
+import SideBarAdmin from "../components/SideBarAdmin";
 
 const MealRecords = () => {
   const [subscriptions, setSubscriptions] = useState([]);
@@ -29,7 +29,7 @@ const MealRecords = () => {
   return (
     <div className="grid md:grid-flow-col lg:grid-flow-col md:col-span-2 lg:col-span-2">
       <div className="">
-        <Sidebar />
+        <SideBarAdmin />
       </div>
       <div className="container  pt-20 p-2 w-full">
         <h1 className="text-2xl font-bold mb-4">Meal Records</h1>

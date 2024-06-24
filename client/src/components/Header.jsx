@@ -21,7 +21,7 @@ export default function Header() {
     <div className="w-screen max-h-20 backdrop-blur-md shadow-md fixed grid grid-flow-col z-20">
       <div className="flex justify-start items-center">
         <Link to="/">
-          <img src="logo.png" alt="logo" className="h-14 max-h-16 m-1" />
+          <img src="/logo.png" alt="logo" className="h-14 max-h-16 m-1" />
         </Link>
       </div>
       <div className="flex justify-end">
@@ -33,7 +33,7 @@ export default function Header() {
             Home
           </Link> */}
 
-          <Link
+          {/* <Link
             to="/subscriptionse-requests"
             className="rounded-full font-semibold py-2 px-4 md:mr-5 lg:mr-5 sm:mr-1 border-black border shadow-md"
           >
@@ -50,7 +50,7 @@ export default function Header() {
             className="rounded-full font-semibold py-2 px-4 md:mr-5 lg:mr-5 sm:mr-1 border-black border shadow-md"
           >
             Feedback From
-          </Link>
+          </Link> */}
           {/* <Link
             to="/meal-records"
             className="rounded-full font-semibold py-2 px-4 md:mr-5 lg:mr-5 sm:mr-1 border-black border shadow-md"

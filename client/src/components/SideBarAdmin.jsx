@@ -3,7 +3,7 @@ import { BsLayoutSidebarInset } from "react-icons/bs";
 
 import { useEffect, useState } from "react";
 
-const Sidebar = () => {
+const SideBarAdmin = () => {
   const location = useLocation();
   const [expanded, setExpanded] = useState(true);
   const [showText, setShowText] = useState(true);
@@ -44,7 +44,7 @@ const Sidebar = () => {
             to="/subscriptionse-requests"
             className={`${getLinkClasses("/subscriptionse-requests")} flex `}
           >
-            <img alt="requests" className="w-6 mr-4" src="request.svg" />
+            <img alt="requests" className="w-6 mr-4" src="/request.svg" />
             {expanded && showText && <p className="duration-300">Requests</p>}
           </Link>
         </li>
@@ -53,7 +53,7 @@ const Sidebar = () => {
             to="/active-subscriptions"
             className={`${getLinkClasses("/active-subscriptions")} flex`}
           >
-            <img alt="requests" className="w-6 mr-4" src="active.svg" />
+            <img alt="requests" className="w-6 mr-4" src="/active.svg" />
             {expanded && showText && <p>Active</p>}
           </Link>
         </li>
@@ -62,7 +62,7 @@ const Sidebar = () => {
             to="/meal-records"
             className={`${getLinkClasses("/meal-records")} flex`}
           >
-            <img alt="requests" className="w-6 mr-4" src="records.svg" />
+            <img alt="requests" className="w-6 mr-4" src="/records.svg" />
             {expanded && showText && <p>Records</p>}
           </Link>
         </li>
@@ -71,7 +71,7 @@ const Sidebar = () => {
             to="/upload-add"
             className={`${getLinkClasses("/upload-add")} flex`}
           >
-            <img alt="requests" className="w-6 mr-4" src="records.svg" />
+            <img alt="requests" className="w-6 mr-4" src="/records.svg" />
             {expanded && showText && <p className="">Upload Add</p>}
           </Link>
         </li>
@@ -80,7 +80,7 @@ const Sidebar = () => {
             to="/feedback-responses"
             className={`${getLinkClasses("/feedback-responses")} flex`}
           >
-            <img alt="requests" className="w-6 mr-4" src="active.svg" />
+            <img alt="requests" className="w-6 mr-4" src="/active.svg" />
             {expanded && showText && <p>feedback</p>}
           </Link>
         </li>
@@ -89,4 +89,4 @@ const Sidebar = () => {
   );
 };
 
-export default Sidebar;
+export default SideBarAdmin;

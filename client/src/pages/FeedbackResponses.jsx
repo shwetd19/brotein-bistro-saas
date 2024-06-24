@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import Sidebar from "../components/SideBarAdmin";
+import SideBarAdmin from "../components/SideBarAdmin";
 
 function FeedbackFormResponse() {
   const [feedbackResponses, setFeedbackResponses] = useState([]);
@@ -47,7 +47,7 @@ function FeedbackFormResponse() {
 
   return (
     <div className="grid md:grid-flow-col lg:grid-flow-col md:col-span-2 lg:col-span-2">
-      <Sidebar />
+      <SideBarAdmin />
       <div className="pt-20 p-2 w-full">
         <div className="rounded-xl border">
           <div className="p-4 flex">
