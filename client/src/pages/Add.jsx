@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Sidebar from "../components/Sidebar";
+import Sidebar from "../components/SideBarAdmin";
 const Add = () => {
   const [image, setImage] = useState(null);
   const [preview, setPreview] = useState(null);

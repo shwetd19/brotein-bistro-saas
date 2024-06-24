@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom"; // Import Link
-import Sidebar from "../components/Sidebar";
+import Sidebar from "../components/SideBarAdmin";
 
 const MealRecords = () => {
   const [subscriptions, setSubscriptions] = useState([]);
