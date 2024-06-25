@@ -6,7 +6,7 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        target: "https://brotein-bistro-saas-api.vercel.app/",
+        target: "https://brotein-bistro-saas-api.vercel.app",
         secure: false,
       },
     },
