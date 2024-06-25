@@ -1,4 +1,5 @@
 import Advertisement from "../models/advertisement.model.js";
+import aggregate from "mongoose";
 
 export const createAdvertisement = (req, res) => {
   const advertisementData = req.body;
@@ -29,5 +30,17 @@ export const deleteAdvertisement = (req, res) => {
   const { id } = req.params;
   Advertisement.findByIdAndDelete(id)
     .then(() => res.status(204).send())
+    .catch((error) => res.status(500).json({ message: error.message }));
+};
+
+export const getLatestAdvertisement = (_, res) => {
+  Advertisement.findOne({})
+    .sort({ createdAt: -1 })
+    .then((advertisement) => {
+      if (!advertisement) {
+        return res.status(404).json({ message: "Advertisement not found" });
+      }
+      res.status(200).json(advertisement);
+    })
     .catch((error) => res.status(500).json({ message: error.message }));
 };

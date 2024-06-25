@@ -8,6 +8,7 @@ import subscriptionRoutes from "./routes/subscriptions.route.js";
 import ActiveSubscriptionRoutes from "./routes/activeSubscription.route.js";
 import feedbackRoutes from "./routes/feedback.route.js";
 import adsRoutes from "./routes/advertisement.route.js";
+import eventRoutes from "./routes/event.route.js";
 
 import cookieParser from "cookie-parser";
 import path from "path";
@@ -40,6 +41,7 @@ app.use("/api/subs", subscriptionRoutes);
 app.use("/api/active/subs", ActiveSubscriptionRoutes);
 app.use("/api/feedback", feedbackRoutes);
 app.use("/api/ads", adsRoutes);
+app.use("/api/events", eventRoutes);
 
 app.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500;

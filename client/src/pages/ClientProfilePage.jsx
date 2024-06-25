@@ -50,22 +50,32 @@ const UserProfile = () => {
       <div className="flex items-center justify-center min-h-screen pt-20 p-2 w-full col-span-12">
         <div className="text-center  glass shadow-lg p-6 rounded-2xl  border overflow-hidden">
           <h1 className="text-xl font-bold mb-4">User Profile</h1>
-          <table className="w-full text-left">
+          <table className="w-full text-left mt-8">
+            <thead>
+              <tr className="bg-gray-100 dark:bg-gray-700">
+                <th className="px-4 py-2 font-semibold text-sm text-gray-500 dark:text-gray-400">
+                  Details
+                </th>
+                <th className="px-4 py-2 font-semibold text-sm text-gray-500 dark:text-gray-400">
+                  Value
+                </th>
+              </tr>
+            </thead>
             <tbody>
-              <tr>
-                <td className="font-semibold">ID:</td>
+              <tr className="border-b border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
+                <td className="px-4 py-2">ID:</td>
                 <td>{userData.userId}</td>
               </tr>
-              <tr>
-                <td className="font-semibold">Username:</td>
+              <tr className="border-b border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
+                <td className="px-4 py-2">Username:</td>
                 <td>{userData.username}</td>
               </tr>
-              <tr>
-                <td className="font-semibold">Phone Number:</td>
+              <tr className="border-b border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
+                <td className="px-4 py-2">Phone Number:</td>
                 <td>{userData.phoneNumber}</td>
               </tr>
-              <tr>
-                <td className="font-semibold">Address:</td>
+              <tr className="border-b border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
+                <td className="px-4 py-2">Address:</td>
                 <td>{userData.address}</td>
               </tr>
             </tbody>

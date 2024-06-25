@@ -5,10 +5,6 @@ const advertisementSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  addText: {
-    type: String,
-    required: true,
-  },
 }, { timestamps: true });
 
 const Advertisement = mongoose.model("Advertisement", advertisementSchema);
