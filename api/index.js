@@ -15,18 +15,25 @@ import path from "path";
 dotenv.config();
 
 mongoose
-  .connect(process.env.MONGO)
-  .then(() => {
+ .connect(process.env.MONGO)
+ .then(() => {
     console.log("Connected to MongoDB");
   })
-  .catch((err) => {
+ .catch((err) => {
     console.log(err);
   });
 
 const app = express();
 
-// Apply CORS middleware to enable CORS for all routes
-app.use(cors()); // Add this line
+// Custom CORS middleware to allow requests from your frontend domain
+const corsMiddleware = cors({
+  origin: 'https://brotein-bistro-saas-client.vercel.app', // Specify your frontend domain here
+  methods: ['GET', 'POST'], // Specify the methods you want to allow
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true // Allow sending of cookies
+});
+
+app.use(corsMiddleware); // Use the custom CORS middleware
 
 app.use(express.json());
 app.use(cookieParser());
