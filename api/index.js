@@ -1,7 +1,7 @@
 import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
-import cors from "cors"; // Import cors
+import cors from "cors";
 import userRoutes from "./routes/user.route.js";
 import authRoutes from "./routes/auth.route.js";
 import subscriptionRoutes from "./routes/subscriptions.route.js";
@@ -15,25 +15,24 @@ import path from "path";
 dotenv.config();
 
 mongoose
- .connect(process.env.MONGO)
- .then(() => {
+  .connect(process.env.MONGO)
+  .then(() => {
     console.log("Connected to MongoDB");
   })
- .catch((err) => {
+  .catch((err) => {
     console.log(err);
   });
 
 const app = express();
 
-// Custom CORS middleware to allow requests from your frontend domain
-const corsMiddleware = cors({
-  origin: 'https://brotein-bistro-saas-client.vercel.app', // Specify your frontend domain here
-  methods: ['GET', 'POST'], // Specify the methods you want to allow
-  allowedHeaders: ['Content-Type', 'Authorization'],
-  credentials: true // Allow sending of cookies
-});
-
-app.use(corsMiddleware); // Use the custom CORS middleware
+// Apply CORS middleware with detailed configuration
+app.use(
+  cors({
+    origin: ["https://brotein-bistro-saas-client.vercel.app/"],
+    methods: ["POST", "GET"],
+    credentials: true,
+  })
+);
 
 app.use(express.json());
 app.use(cookieParser());
