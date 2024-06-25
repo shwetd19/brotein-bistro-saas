@@ -23,7 +23,7 @@ const app = express();
 
 app.use(
   cors({
-    origin: ["https://brotein-bistro-saas-client.vercel.app/"],
+    origin: ["https://brotein-bistro-saas-client.vercel.app"],
     methods: ["POST", "GET"],
     credentials: true,
   })
