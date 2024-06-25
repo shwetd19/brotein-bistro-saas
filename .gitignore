@@ -5,6 +5,3 @@ node_modules/
 .env
 .env.local
 .env.*.local
-
-# Ignore dist directory (generated build files)
-dist/
