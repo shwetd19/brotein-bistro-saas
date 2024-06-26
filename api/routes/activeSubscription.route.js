@@ -10,7 +10,7 @@ import {
   getMealRecordsByUserId,
   getCountOfActiveSubscriptions,
   adminRecordMeal,
-  deleteMealRecord,
+  deleteMealRecord
 } from "../controllers/activeSubscription.controller.js";
 
 const router = express.Router();
@@ -44,6 +44,6 @@ router.get("/getAllActiveSubs/count", getCountOfActiveSubscriptions);
 router.post("/admin/recordMeal/:username", adminRecordMeal);
 
 // For deleting a meal record
-router.post("/deleteMeal/", deleteMealRecord);
+router.post("/deleteMeal/", deleteMealRecord); 
 
 export default router;
