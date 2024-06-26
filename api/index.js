@@ -31,10 +31,8 @@ app.use(cors()); // Add this line
 app.use(express.json());
 app.use(cookieParser());
 
-const port = process.env.API_PORT || 3000;
-
-app.listen(port, () => {
-  console.log(`Server listening on port ${port}`);
+app.listen(3000, () => {
+  console.log("Server listening on port 3000");
 });
 
 app.use("/api/user", userRoutes);
@@ -54,6 +52,3 @@ app.use((err, req, res, next) => {
     statusCode,
   });
 });
-
-// Export the app module
-export default app;
