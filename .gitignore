@@ -1,9 +1,0 @@
-# Ignore node_modules directories in the root and all subdirectories
-node_modules/
-
-# Ignore env and dist folders
-.env
-dist/
-
-client/dist
-/client/dist
