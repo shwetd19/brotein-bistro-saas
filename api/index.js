@@ -1,7 +1,7 @@
 import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
-import cors from "cors"; // Import cors
+// import cors from "cors"; // Import cors
 import userRoutes from "./routes/user.route.js";
 import authRoutes from "./routes/auth.route.js";
 import subscriptionRoutes from "./routes/subscriptions.route.js";
@@ -26,18 +26,20 @@ mongoose
 
 const __dirname = path.resolve();
 
+const app = express();
+
 app.use(express.static(path.join(__dirname, "/client/dist")));
+
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "client", "dist", "index.html"));
 });
 
-const app = express();
+app.use(express.json());
+
+app.use(cookieParser());
 
 // Apply CORS middleware to enable CORS for all routes
-app.use(cors()); // Add this line
-
-app.use(express.json());
-app.use(cookieParser());
+// app.use(cors()); // Add this line
 
 app.listen(3000, () => {
   console.log("Server listening on port 3000");
