@@ -11,7 +11,11 @@ function SubscriptionseRequests() {
     const fetchSubscriptions = async () => {
       try {
         const response = await axios.get("/api/subs/subscriptions");
-        setSubscriptions(response.data);
+        if (Array.isArray(response.data)) {
+          setSubscriptions(response.data);
+        } else {
+          console.error("API response is not an array:", response.data);
+        }
       } catch (error) {
         console.error("Error fetching subscriptions:", error);
       } finally {
@@ -26,11 +30,17 @@ function SubscriptionseRequests() {
     setSearchQuery(event.target.value);
   };
 
-  const filteredSubscriptions = subscriptions.filter(
-    (subscription) =>
-      subscription.username.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      subscription.phoneNumber.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  const filteredSubscriptions = Array.isArray(subscriptions)
+    ? subscriptions.filter(
+        (subscription) =>
+          subscription.username
+            .toLowerCase()
+            .includes(searchQuery.toLowerCase()) ||
+          subscription.phoneNumber
+            .toLowerCase()
+            .includes(searchQuery.toLowerCase())
+      )
+    : [];
 
   const handleApprove = async (id) => {
     try {
