@@ -1,7 +1,7 @@
 import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
-import cors from "cors";
+import cors from "cors"; // Import cors
 import userRoutes from "./routes/user.route.js";
 import authRoutes from "./routes/auth.route.js";
 import subscriptionRoutes from "./routes/subscriptions.route.js";
@@ -25,17 +25,8 @@ mongoose
 
 const app = express();
 
-
-// Apply CORS middleware with specific configuration
-// app.use(
-//   cors({
-//     origin: ["https://brotein-bistro-saas-client.vercel.app"],
-//     methods: ["POST", "GET"],
-//     credentials: true,
-//   })
-// );
-
-app.use(cors()); 
+// Apply CORS middleware to enable CORS for all routes
+app.use(cors()); // Add this line
 
 app.use(express.json());
 app.use(cookieParser());
