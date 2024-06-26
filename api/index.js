@@ -9,9 +9,9 @@ import ActiveSubscriptionRoutes from "./routes/activeSubscription.route.js";
 import feedbackRoutes from "./routes/feedback.route.js";
 import adsRoutes from "./routes/advertisement.route.js";
 import eventRoutes from "./routes/event.route.js";
+
 import cookieParser from "cookie-parser";
 import path from "path";
-
 dotenv.config();
 
 mongoose
@@ -24,6 +24,7 @@ mongoose
   });
 
 const app = express();
+
 
 // Apply CORS middleware with specific configuration
 // app.use(
@@ -39,10 +40,8 @@ app.use(cors());
 app.use(express.json());
 app.use(cookieParser());
 
-const port = process.env.API_PORT || 3000;
-
-app.listen(port, () => {
-  console.log(`Server listening on port ${port}`);
+app.listen(3000, () => {
+  console.log("Server listening on port 3000");
 });
 
 app.use("/api/user", userRoutes);
