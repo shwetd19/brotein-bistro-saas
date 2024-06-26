@@ -15,12 +15,7 @@ function ActiveSubscriptions() {
     const fetchActiveSubscriptions = async () => {
       try {
         const response = await axios.get("/api/active/subs/getAllActiveSubs");
-        if (Array.isArray(response.data)) {
-          setActiveSubscriptions(response.data);
-        } else {
-          console.error("Expected an array, got:", response.data);
-          setActiveSubscriptions([]); // Set to an empty array or handle as needed
-        }
+        setActiveSubscriptions(response.data);
       } catch (error) {
         console.error("Error fetching active subscriptions:", error);
       } finally {
@@ -49,7 +44,7 @@ function ActiveSubscriptions() {
 
   const handleAdminRecordMeal = async (subscription) => {
     try {
-      await axios.post(
+      const response = await axios.post(
         `/api/active/subs/admin/recordMeal/${subscription.username}`,
         {
           username: subscription.username,
@@ -79,11 +74,8 @@ function ActiveSubscriptions() {
                 onChange={handleSearchChange}
                 className=" rounded px-3 py-2"
               />
-              <img
-                src="/images/search.svg"
-                className="w-10 pr-5"
-                alt="Search"
-              />
+
+              <img src="/public/search.svg" className="w-10 pr-5" />
             </div>
             <div className="flex items-center justify-end">
               <input
@@ -116,6 +108,9 @@ function ActiveSubscriptions() {
                 <th className="px-4 py-2 text-sm font-semibold text-gray-700">
                   Days Left
                 </th>
+                {/* <th className="px-4 py-2 text-sm font-semibold text-gray-700">
+                  Meals Left
+                </th> */}
                 <th className="px-4 py-2 text-sm font-semibold text-gray-700">
                   Action
                 </th>
@@ -148,6 +143,9 @@ function ActiveSubscriptions() {
                   <td className="px-4 py-2 text-center">
                     {subscription.DaysLeft}/50
                   </td>
+                  {/* <td className="px-4 py-2 text-center">
+                    {subscription.MealsLeft}
+                  </td> */}
                   <td className="px-4 py-2 text-center">
                     <button
                       onClick={() => handleAdminRecordMeal(subscription)}
