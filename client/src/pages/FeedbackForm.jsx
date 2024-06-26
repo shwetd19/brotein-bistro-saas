@@ -34,7 +34,7 @@ const FeedbackForm = () => {
     try {
       // Send the feedback data to the backend
       const response = await axios.post(
-        "/api/feedback/give/feedback",
+        "http://localhost:3000/api/feedback/give/feedback",
         feedbackData
       );
 
