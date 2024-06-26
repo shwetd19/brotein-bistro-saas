@@ -15,7 +15,12 @@ function ActiveSubscriptions() {
     const fetchActiveSubscriptions = async () => {
       try {
         const response = await axios.get("/api/active/subs/getAllActiveSubs");
-        setActiveSubscriptions(response.data);
+        if (!Array.isArray(response.data)) {
+          console.error("Expected an array, got:", response.data);
+          setActiveSubscriptions([]); // Set to an empty array or handle as needed
+        } else {
+          setActiveSubscriptions(response.data);
+        }
       } catch (error) {
         console.error("Error fetching active subscriptions:", error);
       } finally {
@@ -75,7 +80,11 @@ function ActiveSubscriptions() {
                 className=" rounded px-3 py-2"
               />
 
-              <img src="/public/search.svg" className="w-10 pr-5" />
+              <img
+                src="/images/search.svg"
+                className="w-10 pr-5"
+                alt="Search"
+              />
             </div>
             <div className="flex items-center justify-end">
               <input
