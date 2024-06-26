@@ -26,7 +26,14 @@ mongoose
 const app = express();
 
 // Apply CORS middleware to enable CORS for all routes
-app.use(cors()); // Add this line
+
+app.use(
+  cors({
+    origin: ["https://brotein-bistro-saas-client.vercel.app"],
+    methods: ["POST", "GET", "PUT", "PATCH", "DELETE"],
+    credentials: true,
+  })
+);
 
 app.use(express.json());
 app.use(cookieParser());
