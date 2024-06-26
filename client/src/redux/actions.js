@@ -6,7 +6,7 @@ export const checkActiveSubscription =
   (userId) => async (dispatch, getState) => {
     try {
       const response = await axios.get(
-        `http://localhost:3000/api/active/subs/getAllActiveSubs`
+        `/api/active/subs/getAllActiveSubs`
       );
       const activeSubscribers = response.data;
 
