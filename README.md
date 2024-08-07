@@ -1,6 +1,6 @@
 # Brotein Bistro SaaS
 
-![Brotein Bistro Logo]([link-to-your-logo-image](https://github.com/shwetd19/brotein-bistro-saas/blob/main/docs/logo.png))
+![Brotein Bistro Logo](https://github.com/shwetd19/brotein-bistro-saas/blob/main/docs/logo.png)
 
 🚀 Exciting News! 🎉
 
