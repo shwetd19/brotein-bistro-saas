@@ -1,11 +1,5 @@
 # Brotein Bistro SaaS
 
-![Brotein Bistro Logo](https://github.com/shwetd19/brotein-bistro-saas/blob/main/docs/logo.png)
-
-🚀 Exciting News! 🎉
-
-I'm thrilled to announce that the Brotein Bistro SaaS platform is now LIVE! Working on this groundbreaking project with Anuj Bhuyar has been an incredible journey, and I am proud of what we have accomplished.
-
 ## Overview
 
 Brotein Bistro is not just another SaaS; it's a game-changer for cafes looking to enhance their meal subscription services. Our platform offers seamless subscription management, real-time notifications, and an intuitive admin dashboard with a meal tracker, all designed to streamline operations and delight customers.
